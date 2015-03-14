@@ -1,4 +1,4 @@
-options
 {% for item in items %}
-    {% include item.type.template with item=item %}
+{% include item.type.template with item=item %}
 {% endfor %}
+<a href="{% url 'designer.views.catalog' %}" >Reset</a>

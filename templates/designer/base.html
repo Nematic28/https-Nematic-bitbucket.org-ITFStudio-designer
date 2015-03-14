@@ -9,11 +9,8 @@
     </div>
 
     <div id="options">
-    <form action="" method="post">
     {% block options %}
         {% include 'designer/options.html' with items=options %}
     {% endblock %}
-    <input type="submit">
-    </form>
     </div>
 {% endblock %}
