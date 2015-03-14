@@ -1,0 +1,4 @@
+options
+{% for item in items %}
+    {% include item.type.template with item=item %}
+{% endfor %}

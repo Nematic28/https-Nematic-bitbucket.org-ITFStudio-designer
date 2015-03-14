@@ -1,0 +1,8 @@
+<div>
+    {% if item.checked %}
+        <input type="radio" name="radio[{{ item.level }}]" id="radio_item_{{ item.id }}" checked>
+    {% else %}
+        <input type="radio" name="radio[{{ item.level }}]" id="radio_item_{{ item.id }}">
+    {% endif %}
+    <label for="radio_item_{{ item.id }}">{{ item.name }}</label>
+</div>
