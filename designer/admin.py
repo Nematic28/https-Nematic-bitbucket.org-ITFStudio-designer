@@ -16,7 +16,8 @@ admin.AdminSite.site_header = 'Панель администратора'
 class CatalogImagesInline(admin.TabularInline):
     model = Image
     extra = 1
-    max_num = 13
+    max_num = 3
+    readonly_fields = ('thumbnail',)
 
 
 class CatalogChoiceRootField(forms.ModelChoiceField):
@@ -49,7 +50,7 @@ class CatalogAdmin(admin.ModelAdmin):
         ('Настройки', {'fields': ['default', 'display']}),
     ]
 
-    list_display = ('three_name', 'images', 'date_create', 'date_modify', 'display')
+    list_display = ('three_name', 'date_create', 'date_modify', 'display')
     list_filter = ('date_create', 'date_modify', 'display')
     readonly_fields = ('date_create', 'date_modify')
     ordering = ('left',)

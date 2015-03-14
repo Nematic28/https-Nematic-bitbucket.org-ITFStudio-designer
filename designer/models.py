@@ -72,10 +72,8 @@ class Catalog(models.Model):
 
     def images(self):
         if self.__images__ is None:
-            self.__images__ = Image.objects.filter(parent=self.id).count()
+            self.__images__ = Image.objects.filter(parent=self.id).all()
         return self.__images__
-    images.integer = True
-    images.short_description = 'Кол-во изображений'
 
     # Ф-и работы с деревом
     def level(self):
@@ -178,3 +176,8 @@ class Image(models.Model):
     file = models.ImageField('Изображение',
                              upload_to=Helper.new_image_name,
                              )
+
+    def thumbnail(self):
+        return u'<img src="/%s" style="max-width:100px; max-height:100px" />' % self.file.url
+    thumbnail.short_description = 'Image'
+    thumbnail.allow_tags = True
