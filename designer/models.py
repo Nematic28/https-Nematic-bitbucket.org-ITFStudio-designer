@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from designer.scopes import CatalogManager, ImageManager
 import catalog.settings
 import random
 import string
@@ -14,14 +15,14 @@ class Helper():
             extension = 'png'
         if instance.id is None:
             if Image.objects.all().count():
-                id = Image.objects.all().order_by('-id')[0].id + 1
+                image_id = Image.objects.all().order_by('-id')[0].id + 1
             else:
-                id = 1
+                image_id = 1
         else:
-            id = instance.id
+            image_id = instance.id
         rand = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
 
-        return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE, str(id), rand, extension)
+        return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE, str(image_id), rand, extension)
 
 
 class FieldType(models.Model):
@@ -58,11 +59,7 @@ class Catalog(models.Model):
                                   help_text='Отображать по умолчанию если не выбрано другое')
     display = models.BooleanField('Опубликовано', default=True, help_text='Отображать на сайте или нет')
 
-    __child__ = None
-    __level__ = None
-    __branch__ = None
-    __images__ = None
-    __parents__ = None
+    objects = CatalogManager()
 
     def __str__(self):
         return self.name
@@ -71,25 +68,21 @@ class Catalog(models.Model):
         return "%s %s" % ('-' * self.level(), self.name)
 
     def images(self):
-        if self.__images__ is None:
-            self.__images__ = Image.objects.filter(parent=self.id).all()
-        return self.__images__
+        return Image.objects.by_catalog_id(self.id).ordered().all()
+
+    def count_images(self):
+        return Image.objects.by_catalog_id(self.id).count()
+    count_images.short_description = "Кол-во изображений"
 
     # Ф-и работы с деревом
     def level(self):
-        if self.__level__ is None:
-            self.__level__ = Catalog.objects.filter(left__lte=self.left, right__gte=self.right).count()
-        return self.__level__
+        return Catalog.objects.branch(self.left, self.right).count()
 
     def child(self):
-        if self.__child__ is None:
-            self.__child__ = Catalog.objects.filter(left__gt=self.left, right__lt=self.right, root=self.id)
-        return self.__child__
+        return Catalog.objects.child(self.id).all()
 
     def branch(self):
-        if self.__branch__ is None:
-            self.__branch__ = Catalog.objects.filter(left__gt=self.left, right__lt=self.right)
-        return self.__branch__
+        return Catalog.objects.branch(self.left, self.right).all()
 
     def delete(self, using=None):
         if Catalog.objects.filter(pk=self.id).count():
@@ -176,8 +169,27 @@ class Image(models.Model):
     file = models.ImageField('Изображение',
                              upload_to=Helper.new_image_name,
                              )
+    objects = ImageManager()
 
     def thumbnail(self):
         return u'<img src="/%s" style="max-width:100px; max-height:100px" />' % self.file.url
     thumbnail.short_description = 'Image'
     thumbnail.allow_tags = True
+
+    def layer(self):
+        return self.parent.layer
+
+    def delete(self, *args, **kwargs):
+        self.file.delete(save=False)
+        super().delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        if self.id:
+            try:
+                old = Image.objects.get(pk=self.id).file
+                new = self.file
+                if old.url != new.url:
+                    old.delete(save=False)
+            except:
+                pass
+        super(Image, self).save(*args, **kwargs)
