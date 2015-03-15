@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+{% endblock %}
+
 {% block content %}
 
     <div id="view">
-    {% block view %}
-        {% include 'designer/view.html' %}
-    {% endblock %}
+        <div id="main-view">
+            {% block view %}
+                {% include 'designer/view.html' with images=images %}
+            {% endblock %}
+            <div class="nav nav-left"></div>
+            <div class="nav nav-right"></div>
+        </div>
     </div>
 
     <div id="options">

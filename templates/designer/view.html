@@ -1,1 +1,5 @@
-view
+{% for image in images %}
+    <img src="/{{ image.file.url }}" style="z-index: {{ image.layer }}">
+{% empty %}
+    Выберете чтонибудь
+{% endfor %}
