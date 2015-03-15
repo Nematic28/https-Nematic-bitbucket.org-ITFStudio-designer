@@ -45,12 +45,12 @@ class CatalogAdmin(admin.ModelAdmin):
     form = CatalogAdminForm
 
     fieldsets = [
-        ('Основное',     {'fields': ['name', 'root', 'type']}),
-        ('Информация',     {'fields': [('date_modify', 'date_create')]}),
-        ('Настройки', {'fields': ['default', 'display']}),
+        ('Основное',    {'fields': ['name', 'root', 'type']}),
+        ('Информация',  {'fields': [('date_modify', 'date_create')]}),
+        ('Настройки',   {'fields': ['default', 'display', 'layer']}),
     ]
 
-    list_display = ('three_name', 'date_create', 'date_modify', 'display')
+    list_display = ('three_name', 'count_images', 'date_create', 'date_modify', 'display')
     list_filter = ('date_create', 'date_modify', 'display')
     readonly_fields = ('date_create', 'date_modify')
     ordering = ('left',)
