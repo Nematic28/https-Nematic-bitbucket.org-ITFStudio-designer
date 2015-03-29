@@ -45,6 +45,10 @@ class Helper():
 
 class FieldType(models.Model):
 
+    class Meta:
+        verbose_name = 'тип'
+        verbose_name_plural = 'типы'
+
     name = models.CharField('Название', max_length=255, null=False)
     machine = models.CharField('Машинное имя', max_length=255, null=False, unique=True)
 
