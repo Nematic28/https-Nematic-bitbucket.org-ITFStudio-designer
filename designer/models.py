@@ -211,6 +211,9 @@ class Image(models.Model):
                              )
     objects = ImageManager()
 
+    def __str__(self):
+        return 'Разворот %s' % self.number
+
     def thumbnail(self):
         return u'<img src="/%s" style="max-width:100px; max-height:100px" />' % self.file.url
     thumbnail.short_description = 'Image'
