@@ -103,10 +103,59 @@ class Catalog(models.Model):
         return Catalog.objects.branch(self.left, self.right).count()
 
     def child(self):
-        return Catalog.objects.child(self.id).all()
+        return Catalog.objects.child(self.id).ordered().all()
 
     def branch(self):
         return Catalog.objects.branch(self.left, self.right).all()
+
+    def up(self):
+        item_to_up = Catalog.objects.get(pk=self.pk)
+        items_to_up = Catalog.objects.filter(left__gte=item_to_up.left, right__lte=item_to_up.right).ordered().all()
+        shift_to_down = len(items_to_up) * 2
+
+        if not Catalog.objects.filter(root=item_to_up.root, right=item_to_up.left - 1).count():
+            return
+        item_before = Catalog.objects.get(root=item_to_up.root, right=item_to_up.left - 1)
+
+        if item_to_up.level() != item_before.level():
+            return
+        items_before = Catalog.objects.filter(left__gte=item_before.left, right__lte=item_before.right).ordered().all()
+        shift_to_up = len(items_before) * 2
+
+        for item in items_to_up:
+            item.left -= shift_to_up
+            item.right -= shift_to_up
+            item.save()
+
+        for item in items_before:
+            item.left += shift_to_down
+            item.right += shift_to_down
+            item.save()
+
+    def down(self):
+        item_to_down = Catalog.objects.get(pk=self.pk)
+        items_to_down = Catalog.objects.filter(left__gte=item_to_down.left, right__lte=item_to_down.right).ordered().all()
+        shift_to_up = len(items_to_down) * 2
+
+        if not Catalog.objects.filter(root=item_to_down.root, left=item_to_down.right + 1).count():
+            return
+        item_after = Catalog.objects.get(root=item_to_down.root, left=item_to_down.right + 1)
+
+        if item_to_down.level() != item_after.level():
+            return
+
+        items_after = Catalog.objects.filter(left__gte=item_after.left, right__lte=item_after.right).ordered().all()
+        shift_to_down = len(items_after) * 2
+
+        for item in items_to_down:
+            item.left += shift_to_down
+            item.right += shift_to_down
+            item.save()
+
+        for item in items_after:
+            item.left -= shift_to_up
+            item.right -= shift_to_up
+            item.save()
 
     def delete(self, using=None):
         for image in self.images():
