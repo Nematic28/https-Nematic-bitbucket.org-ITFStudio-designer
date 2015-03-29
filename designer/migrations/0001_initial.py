@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('number', models.IntegerField(default=1, help_text='Номер положения', verbose_name='Номер')),
-                ('file', models.ImageField(upload_to=designer.models.Helper.new_image_name, verbose_name='Изображение')),
+                ('file', models.ImageField(upload_to=designer.models.Helper.catalog_main_image, verbose_name='Изображение')),
                 ('parent', models.ForeignKey(to='designer.Catalog')),
             ],
             options={

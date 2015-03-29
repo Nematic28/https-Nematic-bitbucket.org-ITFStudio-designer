@@ -8,21 +8,39 @@ import string
 
 class Helper():
     @staticmethod
-    def new_image_name(instance, filename):
+    def get_extension(filename):
         if '.' in filename:
             extension = filename.split('.')[-1]
         else:
             extension = 'png'
-        if instance.id is None:
-            if Image.objects.all().count():
-                image_id = Image.objects.all().order_by('-id')[0].id + 1
-            else:
-                image_id = 1
-        else:
-            image_id = instance.id
-        rand = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
+        return extension
 
-        return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE, str(image_id), rand, extension)
+    @staticmethod
+    def get_random_string(length=10):
+        rand = ''.join(random.choice(string.ascii_lowercase) for i in range(length))
+        return rand
+
+    @staticmethod
+    def catalog_main_image(instance, filename):
+        extension = Helper.get_extension(filename)
+        parent = instance.parent.id
+        new_name = Helper.get_random_string()
+        return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE_MAIN, str(parent), new_name, extension)
+
+    @staticmethod
+    def catalog_logo(instance, filename):
+        extension = Helper.get_extension(filename)
+
+        if instance.id in None:
+            if Catalog.objects.all().count():
+                catalog_id = Catalog.objects.order_by('-id')[0].id + 1
+            else:
+                catalog_id = 1
+        else:
+            catalog_id = instance.id
+
+        new_name = Helper.get_random_string()
+        return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE_LOGO, str(catalog_id), new_name, extension)
 
 
 class FieldType(models.Model):
@@ -85,6 +103,9 @@ class Catalog(models.Model):
         return Catalog.objects.branch(self.left, self.right).all()
 
     def delete(self, using=None):
+        for image in self.images():
+            image.delete()
+
         if Catalog.objects.filter(pk=self.id).count():
             this = Catalog.objects.filter(pk=self.id)[0]
             self.left = this.left
@@ -95,6 +116,8 @@ class Catalog(models.Model):
                 .update(left=models.F('left') - 2 * count)
             Catalog.objects.select_for_update().filter(right__gte=self.right)\
                 .update(right=models.F('right') - 2 * count)
+
+
 
     def save(self, *args, **kwargs):
         # Change left and right
@@ -167,7 +190,7 @@ class Image(models.Model):
     parent = models.ForeignKey(Catalog, on_delete=models.CASCADE)
     number = models.IntegerField('Номер', help_text='Номер положения', default=1)
     file = models.ImageField('Изображение',
-                             upload_to=Helper.new_image_name,
+                             upload_to=Helper.catalog_main_image,
                              )
     objects = ImageManager()
 
@@ -181,6 +204,7 @@ class Image(models.Model):
 
     def delete(self, *args, **kwargs):
         self.file.delete(save=False)
+        print(1)
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
