@@ -118,63 +118,69 @@ class Catalog(models.Model):
             Catalog.objects.select_for_update().filter(right__gte=this.right)\
                 .update(right=models.F('right') - 2)
 
+    def insert(self):
+        if isinstance(self.root, Catalog):  # Под категория
+            Catalog.objects.select_for_update().filter(left__gt=self.root.right) \
+                .update(left=models.F('left') + 2)
+            Catalog.objects.select_for_update().filter(right__gte=self.root.right) \
+                .update(right=models.F('right') + 2)
+            self.left = self.root.right
+            self.right = self.root.right + 1
+        else:  # Рутовая категория
+            if Catalog.objects.count() > 0:  # Добавляем в конец
+                obj = Catalog.objects.filter().order_by('-right')[0]
+                self.left = obj.right + 1
+                self.right = obj.right + 2
+            else:  # По умолчанию
+                self.left = 1
+                self.right = 2
+
+    def update(self):
+        # Если поменялись данные
+        if Catalog.objects.filter(pk=self.id)[0].root != self.root:
+            # Данные для перемещения
+            count = 2 * Catalog.objects.filter(left__gte=self.left, right__lte=self.right).count()
+            if isinstance(self.root, Catalog):
+                rr = self.root.right
+            else:
+                rr = Catalog.objects.order_by('-right')[0].right + 1
+
+            before = True if rr < self.left else False
+            if before:
+                shift = rr - self.right - 1
+                add = count
+            else:
+                shift = rr - self.left
+                add = 0
+
+            # Выделяем место
+            Catalog.objects.select_for_update().filter(left__gte=rr) \
+                .update(left=models.F('left') + count)
+            Catalog.objects.select_for_update().filter(right__gte=rr) \
+                .update(right=models.F('right') + count)
+
+            # Перенос данных
+            Catalog.objects.select_for_update() \
+                .filter(left__gte=self.left + add,
+                        right__lte=self.right + add) \
+                .update(left=models.F('left') + shift, right=models.F('right') + shift)
+
+            # Удаление старого пространства
+            Catalog.objects.select_for_update().filter(left__gte=(self.left + count)) \
+                .update(left=models.F('left') - count)
+            Catalog.objects.select_for_update().filter(right__gt=self.right) \
+                .update(right=models.F('right') - count)
+
+            obj = Catalog.objects.filter(pk=self.pk)[0]
+            self.left = obj.left
+            self.right = obj.right
+
     def save(self, *args, **kwargs):
         # Change left and right
         if self.id is None:                         # Create
-            if isinstance(self.root, Catalog):      # Под категория
-                Catalog.objects.select_for_update().filter(left__gt=self.root.right)\
-                    .update(left=models.F('left') + 2)
-                Catalog.objects.select_for_update().filter(right__gte=self.root.right)\
-                    .update(right=models.F('right') + 2)
-                self.left = self.root.right
-                self.right = self.root.right + 1
-            else:                                   # Рутовая категория
-                if Catalog.objects.count() > 0:     # Добавляем в конец
-                    obj = Catalog.objects.filter().order_by('-right')[0]
-                    self.left = obj.right + 1
-                    self.right = obj.right + 2
-                else:                               # По умолчанию
-                    self.left = 1
-                    self.right = 2
+            self.insert()
         else:                                       # Update
-            # Если поменялись данные
-            if Catalog.objects.filter(pk=self.id)[0].root != self.root:
-                # Данные для перемещения
-                count = 2 * Catalog.objects.filter(left__gte=self.left, right__lte=self.right).count()
-                if isinstance(self.root, Catalog):
-                    rr = self.root.right
-                else:
-                    rr = Catalog.objects.order_by('-right')[0].right + 1
-
-                before = True if rr < self.left else False
-                if before:
-                    shift = rr - self.right - 1
-                    add = count
-                else:
-                    shift = rr - self.left
-                    add = 0
-
-                # Выделяем место
-                Catalog.objects.select_for_update().filter(left__gte=rr)\
-                    .update(left=models.F('left') + count)
-                Catalog.objects.select_for_update().filter(right__gte=rr)\
-                    .update(right=models.F('right') + count)
-
-                # Перенос данных
-                Catalog.objects.select_for_update()\
-                    .filter(left__gte=self.left + add,
-                            right__lte=self.right + add)\
-                    .update(left=models.F('left') + shift, right=models.F('right') + shift)
-
-                # Удаление старого пространства
-                Catalog.objects.select_for_update().filter(left__gte=(self.left + count))\
-                    .update(left=models.F('left') - count)
-                Catalog.objects.select_for_update().filter(right__gt=self.right)\
-                    .update(right=models.F('right') - count)
-
-                obj = Catalog.objects.filter(pk=self.pk)[0]
-                self.left = obj.left
-                self.right = obj.right
+            self.update()
 
         self.date_modify = timezone.now()
         super(Catalog, self).save(*args, **kwargs)
