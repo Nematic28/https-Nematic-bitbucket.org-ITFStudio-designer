@@ -84,7 +84,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
-DESIGNER_IMAGE = 'media/designer'
+DESIGNER_STORAGE = 'media/designer'
+DESIGNER_IMAGE_MAIN = DESIGNER_STORAGE + '/main'
+DESIGNER_IMAGE_LOGO = DESIGNER_STORAGE + '/logo'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
