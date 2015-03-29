@@ -31,7 +31,7 @@ class Helper():
     def catalog_logo(instance, filename):
         extension = Helper.get_extension(filename)
 
-        if instance.id in None:
+        if instance.id is None:
             if Catalog.objects.all().count():
                 catalog_id = Catalog.objects.order_by('-id')[0].id + 1
             else:
@@ -77,6 +77,8 @@ class Catalog(models.Model):
                                   help_text='Отображать по умолчанию если не выбрано другое')
     display = models.BooleanField('Опубликовано', default=True, help_text='Отображать на сайте или нет')
 
+    icon = models.ImageField('Иконка', upload_to=Helper.catalog_logo, blank=True)
+
     objects = CatalogManager()
 
     def __str__(self):
@@ -106,6 +108,8 @@ class Catalog(models.Model):
         for image in self.images():
             image.delete()
 
+        self.icon.delete(save=False)
+
         if Catalog.objects.filter(pk=self.id).count():
             for child in self.child():
                 child.delete()
@@ -134,6 +138,12 @@ class Catalog(models.Model):
             else:  # По умолчанию
                 self.left = 1
                 self.right = 2
+
+    def delete_icon(self):
+        if not self.icon:
+            this = Catalog.objects.get(pk=self.pk)
+            if this and this.icon:
+                this.icon.delete(save=False)
 
     def update(self):
         # Если поменялись данные
@@ -174,6 +184,8 @@ class Catalog(models.Model):
             obj = Catalog.objects.filter(pk=self.pk)[0]
             self.left = obj.left
             self.right = obj.right
+
+        self.delete_icon()
 
     def save(self, *args, **kwargs):
         # Change left and right

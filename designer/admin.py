@@ -45,7 +45,7 @@ class CatalogAdmin(admin.ModelAdmin):
     form = CatalogAdminForm
 
     fieldsets = [
-        ('Основное',    {'fields': ['name', 'root', 'type']}),
+        ('Основное',    {'fields': ['name', 'root', 'type', 'icon']}),
         ('Информация',  {'fields': [('date_modify', 'date_create')]}),
         ('Настройки',   {'fields': ['default', 'display', 'layer']}),
     ]
