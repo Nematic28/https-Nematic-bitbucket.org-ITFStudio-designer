@@ -55,7 +55,7 @@ class CatalogAdmin(admin.ModelAdmin):
     readonly_fields = ('date_create', 'date_modify')
     ordering = ('left',)
 
-    actions = ['delete_list', 'hide_list', 'show_list']
+    actions = ['delete_list', 'hide_list', 'show_list', 'up_list', 'down_list']
     inlines = [CatalogImagesInline]
 
     save_as = True
@@ -91,17 +91,25 @@ class CatalogAdmin(admin.ModelAdmin):
 
     def hide_list(self, request, queryset):
         for obj in queryset:
-            if obj.display is True:
-                obj.display = False
-                obj.save()
+            obj.display = False
+            obj.save()
     hide_list.short_description = 'Скрыть выбранные'
 
     def show_list(self, request, queryset):
         for obj in queryset:
-            if obj.display is False:
-                obj.display = True
-                obj.save()
+            obj.display = True
+            obj.save()
     show_list.short_description = 'Опубликовать выбранные'
+
+    def up_list(self, request, queryset):
+        for obj in queryset:
+            obj.up()
+    up_list.short_description = 'Поднять'
+
+    def down_list(self, request, queryset):
+        for obj in queryset:
+            obj.down()
+    down_list.short_description = 'Опустить'
 
     def get_actions(self, request):
         actions = super(CatalogAdmin, self).get_actions(request)
