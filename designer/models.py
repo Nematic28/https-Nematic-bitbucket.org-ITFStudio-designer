@@ -107,17 +107,16 @@ class Catalog(models.Model):
             image.delete()
 
         if Catalog.objects.filter(pk=self.id).count():
+            for child in self.child():
+                child.delete()
+
             this = Catalog.objects.filter(pk=self.id)[0]
-            self.left = this.left
-            self.right = this.right
-            count = Catalog.objects.filter(left__gte=self.left, right__lte=self.right).count()
-            Catalog.objects.filter(left__gte=self.left, right__lte=self.right).delete()
-            Catalog.objects.select_for_update().filter(left__gte=self.left)\
-                .update(left=models.F('left') - 2 * count)
-            Catalog.objects.select_for_update().filter(right__gte=self.right)\
-                .update(right=models.F('right') - 2 * count)
+            super(Catalog, self).delete(using)
 
-
+            Catalog.objects.select_for_update().filter(left__gte=this.left)\
+                .update(left=models.F('left') - 2)
+            Catalog.objects.select_for_update().filter(right__gte=this.right)\
+                .update(right=models.F('right') - 2)
 
     def save(self, *args, **kwargs):
         # Change left and right
@@ -204,7 +203,6 @@ class Image(models.Model):
 
     def delete(self, *args, **kwargs):
         self.file.delete(save=False)
-        print(1)
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
