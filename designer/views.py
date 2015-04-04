@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from designer.models import Catalog, Image
 
 
@@ -28,4 +29,4 @@ def catalog(request, this_id=None):
     return render_to_response('designer/base.html', {
         "options": options,
         "images": images,
-        })
+        }, context_instance=RequestContext(request))
