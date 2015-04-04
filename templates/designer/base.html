@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/designer_form.js"></script>
 {% endblock %}
 
 {% block content %}
