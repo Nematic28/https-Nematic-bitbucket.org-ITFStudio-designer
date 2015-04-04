@@ -58,6 +58,9 @@ class FieldType(models.Model):
     def __str__(self):
         return self.name
 
+    def is_label(self):
+        return self.machine == self.TYPE_LABEL
+
     def template(self):
         return '%s/%s/%s.%s' % ('designer', 'type', self.machine, 'html')
 

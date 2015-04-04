@@ -26,7 +26,7 @@ class DesignerForm:
 
         if self.request.POST.getlist(item.input_name()):
             return self.__choice_from_form__(item)
-        elif item.type.machine == FieldType.TYPE_LABEL:
+        elif item.type.is_label():
             return True
         elif item.default:
             return True
@@ -37,12 +37,18 @@ class DesignerForm:
         if not data:
             return []
 
+        result = []
         child = []
         for item in data:
-            if self.__need_to_load__(item):
-                child += item.child()
-        data += self.__loader__(child)
-        return data
+            result.append(item)
+
+            if item.type.is_label():
+                result += self.__loader__(item.child())
+            else:
+                if self.__need_to_load__(item):
+                    child += item.child()
+        result += self.__loader__(child)
+        return result
 
     def get_checked_items(self):
         result = []
