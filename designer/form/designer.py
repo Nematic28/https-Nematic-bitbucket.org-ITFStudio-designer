@@ -21,7 +21,6 @@ class DesignerForm:
         root = list(Catalog.objects.child(None).published().ordered().all())
         self.options = self.__load_options__(root)
         self.images = self.__load_images__(self.options)
-        print(self.images)
 
     def get_options(self):
         return self.options
