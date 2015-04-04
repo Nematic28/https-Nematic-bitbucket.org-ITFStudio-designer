@@ -1,4 +1,4 @@
-<div>
-    <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}"{% if item.id in checked_items %}checked{% endif %}>
-    <label for="{{ item.form_name }}">{{ item.name }}</label>
+<div class="option">
+    <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}" {% if item.id in checked_items %}checked{% endif %}/>
+    <label for="{{ item.form_name }}">{% if item.icon %}<img src="{{ item.icon.url }}"/>{% endif %}{{ item.name }}</label>
 </div>
