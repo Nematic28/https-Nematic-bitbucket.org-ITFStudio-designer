@@ -1,32 +1,62 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from designer.models import Catalog, Image
+from designer.models import FieldType
 
 
-def catalog(request, this_id=None):
-    if this_id is None:
-        this = Catalog.objects.parent(this_id).published()[0]
-    else:
-        this = Catalog.objects.published().get(pk=this_id)
+class DesignerForm:
+    request = None
 
-    branch = Catalog.objects.branch(this.left, this.right).published().ordered().all()
+    def __init__(self, request):
+        self.request = request
 
-    options = []
-    images = []
-    # Добавляем все шаги на всех уровнях
-    for node in branch:
-        if node.images():
-            images.append(node.images()[0])
+    def load(self):
+        root = list(Catalog.objects.child(None).published().ordered().all())
+        return self.__loader__(root)
 
-        level = Catalog.objects.parent(node.root).published().ordered().all()
-        for item in level:
-            options.append(item)
+    def __choice_from_form__(self, item):
+        request = self.request
+        list_of_elements = request.POST.getlist(item.input_name())
+        if list_of_elements:
+            if str(item.id) in list_of_elements:
+                return True
+        return False
 
-    next_level = Catalog.objects.child(this.id).published().ordered().all()
-    for item in next_level:
-        options.append(item)
+    def __need_to_load__(self, item):
+
+        if self.request.POST.getlist(item.input_name()):
+            return self.__choice_from_form__(item)
+        elif item.type.machine == FieldType.TYPE_LABEL:
+            return True
+        elif item.default:
+            return True
+
+        return False
+
+    def __loader__(self, data):
+        if not data:
+            return []
+
+        child = []
+        for item in data:
+            if self.__need_to_load__(item):
+                child += item.child()
+        data += self.__loader__(child)
+        return data
+
+    def get_checked_items(self):
+        result = []
+        for key, item in self.request.POST.lists():
+            if 'designer' in key:
+                result += item
+        return list(map(int, result))
+
+
+def catalog(request):
+    form = DesignerForm(request)
+    options = form.load()
 
     return render_to_response('designer/base.html', {
         "options": options,
-        "images": images,
+        "checked_items": form.get_checked_items(),
         }, context_instance=RequestContext(request))

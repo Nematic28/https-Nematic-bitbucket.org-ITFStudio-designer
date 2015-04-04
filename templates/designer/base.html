@@ -18,7 +18,7 @@
 
     <div id="options">
     {% block options %}
-        {% include 'designer/options.html' with items=options %}
+        {% include 'designer/options.html' with items=options checked_items=checked_items %}
     {% endblock %}
     </div>
 {% endblock %}

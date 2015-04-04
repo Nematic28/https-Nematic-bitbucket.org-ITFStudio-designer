@@ -45,6 +45,9 @@ class Helper():
 
 class FieldType(models.Model):
 
+    TYPE_RADIO = 'radio'
+    TYPE_LABEL = 'label'
+
     class Meta:
         verbose_name = 'тип'
         verbose_name_plural = 'типы'
@@ -97,6 +100,12 @@ class Catalog(models.Model):
     def count_images(self):
         return Image.objects.by_catalog_id(self.id).count()
     count_images.short_description = "Кол-во изображений"
+
+    def input_name(self):
+        return 'designer-%s' % self.root_id
+
+    def form_name(self):
+        return 'designer_%s' % self.id
 
     # Ф-и работы с деревом
     def level(self):

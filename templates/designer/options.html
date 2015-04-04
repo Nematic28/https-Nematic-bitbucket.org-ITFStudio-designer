@@ -1,4 +1,15 @@
+<h1>Form</h1>
+
+{% if error_message %} <p><strong>{{ error_message }}</strong></p> {% endif %}
+
+<form action="" method="post">
+
+{% csrf_token %}
+
 {% for item in items %}
-{% include item.type.template with item=item %}
+{% include item.type.template with item=item checked_items=checked_items %}
 {% endfor %}
-<a href="{% url 'designer.views.catalog' %}" >Reset</a>
+
+<br>
+<input type="submit" value="Choice">
+</form>

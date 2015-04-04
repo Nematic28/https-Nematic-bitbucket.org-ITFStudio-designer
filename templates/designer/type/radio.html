@@ -1,3 +1,8 @@
 <div>
-    <a href="/designer/view/{{ item.id }}">{{ item.name }}</a>
+    {% if item.id in checked_items %}
+        <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}" checked>
+    {% else %}
+        <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}">
+    {% endif %}
+    <label for="{{ item.form_name }}">{{ item.name }}</label>
 </div>
