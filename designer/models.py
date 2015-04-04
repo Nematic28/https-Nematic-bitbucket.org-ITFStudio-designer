@@ -280,7 +280,7 @@ class Image(models.Model):
         return 'Разворот %s' % self.number
 
     def thumbnail(self):
-        return u'<img src="/%s" style="max-width:100px; max-height:100px" />' % self.file.url
+        return u'<img src="%s" style="max-width:100px; max-height:100px" />' % self.file.url
     thumbnail.short_description = 'Image'
     thumbnail.allow_tags = True
 
