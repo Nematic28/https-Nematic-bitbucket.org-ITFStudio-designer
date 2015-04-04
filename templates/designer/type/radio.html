@@ -1,8 +1,4 @@
 <div>
-    {% if item.id in checked_items %}
-        <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}" checked>
-    {% else %}
-        <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}">
-    {% endif %}
+    <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}"{% if item.id in checked_items %}checked{% endif %}>
     <label for="{{ item.form_name }}">{{ item.name }}</label>
 </div>
