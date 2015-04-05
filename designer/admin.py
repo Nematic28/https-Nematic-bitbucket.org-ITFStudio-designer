@@ -93,22 +93,26 @@ class CatalogAdmin(admin.ModelAdmin):
         for obj in queryset:
             obj.display = False
             obj.save()
+        self.message_user(request, "%s записей было скрыто" % len(queryset))
     hide_list.short_description = 'Скрыть выбранные'
 
     def show_list(self, request, queryset):
         for obj in queryset:
             obj.display = True
             obj.save()
+        self.message_user(request, "%s записей было опубликовано" % len(queryset))
     show_list.short_description = 'Опубликовать выбранные'
 
     def up_list(self, request, queryset):
         for obj in queryset:
             obj.up()
+        self.message_user(request, "%s записей было поднято" % len(queryset))
     up_list.short_description = 'Поднять'
 
     def down_list(self, request, queryset):
         for obj in queryset:
             obj.down()
+        self.message_user(request, "%s записей было поднято" % len(queryset))
     down_list.short_description = 'Опустить'
 
     def get_actions(self, request):
