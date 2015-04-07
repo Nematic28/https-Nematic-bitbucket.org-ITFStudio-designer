@@ -7,14 +7,22 @@ class DesignerForm:
     options = []
     images = []
 
+    checked_by_default = {}
+
     def __init__(self, request):
         self.request = request
 
     def get_checked_items_id(self):
+        checked_by_default = self.checked_by_default
         result = []
         for key, item in self.request.POST.lists():
             if 'designer' in key:
+                if key in checked_by_default:
+                    checked_by_default.pop(key)
                 result += item
+
+        result += list(checked_by_default.values())
+
         return list(map(int, result))
 
     def load(self):
@@ -55,6 +63,8 @@ class DesignerForm:
         result = []
         child = []
         for item in data:
+            if item.default:
+                self.checked_by_default[item.input_name()] = item.id
             result.append(item)
 
             if item.type.is_label():
