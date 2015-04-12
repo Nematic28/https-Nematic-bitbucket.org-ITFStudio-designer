@@ -15,7 +15,7 @@
     <div id="view">
         <div id="main-view">
             {% block view %}
-                {% include 'designer/view.html' with images=images %}
+                {% include 'designer/views/default.html' with images=images %}
             {% endblock %}
             <div class="nav nav-left"></div>
             <div class="nav nav-right"></div>
@@ -24,7 +24,7 @@
 
     <div id="options">
     {% block options %}
-        {% include 'designer/options.html' with items=options checked_items=checked_items %}
+        {% include 'designer/options/default.html' with items=options checked_items=checked_items %}
     {% endblock %}
     </div>
 {% endblock %}
