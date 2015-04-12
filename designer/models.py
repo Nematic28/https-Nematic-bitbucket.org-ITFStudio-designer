@@ -47,6 +47,7 @@ class FieldType(models.Model):
 
     TYPE_RADIO = 'radio'
     TYPE_LABEL = 'label'
+    TYPE_LINK = 'link'
 
     class Meta:
         verbose_name = 'тип'
@@ -61,8 +62,11 @@ class FieldType(models.Model):
     def is_label(self):
         return self.machine == self.TYPE_LABEL
 
+    def is_link(self):
+        return self.machine == self.TYPE_LINK
+
     def template(self):
-        return '%s/%s/%s.%s' % ('designer', 'type', self.machine, 'html')
+        return '%s/%s/%s.%s' % ('designer', 'types', self.machine, 'html')
 
 
 class Catalog(models.Model):
