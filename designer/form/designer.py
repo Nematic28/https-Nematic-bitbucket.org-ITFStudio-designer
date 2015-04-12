@@ -3,14 +3,16 @@ from designer.models import Catalog
 
 class DesignerForm:
     request = None
+    template_name = None
 
     options = []
     images = []
 
     checked_by_default = {}
 
-    def __init__(self, request):
+    def __init__(self, request, template_name):
         self.request = request
+        self.template_name = template_name
 
     def get_checked_items_id(self):
         checked_by_default = self.checked_by_default
@@ -25,8 +27,12 @@ class DesignerForm:
 
         return list(map(int, result))
 
-    def load(self):
-        root = list(Catalog.objects.child(None).published().ordered().all())
+    def load(self, element_id):
+        root = list(Catalog.objects.child(element_id).published().ordered().all())
+        for item in root:
+            if item.type.is_link():
+                self.template_name = 'designer/link.html'
+
         self.options = self.__load_options__(root)
         self.images = self.__load_images__(self.options)
 
@@ -35,6 +41,9 @@ class DesignerForm:
 
     def get_images(self):
         return self.images
+
+    def get_template(self):
+        return self.template_name
 
     def __load_images__(self, data):
         items = self.__get_checked_items__(data)
@@ -87,6 +96,8 @@ class DesignerForm:
 
         if self.request.POST.getlist(item.input_name()):
             return self.__choice_from_form__(item)
+        elif item.type.is_link():
+            return False
         elif item.type.is_label():
             return True
         elif item.default:
