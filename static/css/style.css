@@ -7,6 +7,79 @@ body {
 	width: 100%;
 		min-width: 1024px;
 }
+* {
+	box-sizing: border-box;
+}
+/*******
+#	ВЫБОР ТИПА
+*******/
+#type-of-products-wrapper{
+	font-size: 0;
+	width: 1024px;
+	margin: 0 auto;
+}
+.type-of-product{
+	display: inline-block;
+	height:100%;
+	font-size: 14px;
+	position: relative;
+	vertical-align: bottom;
+	width: 50%;
+	zoom: 1;
+	*display: inline;
+}
+a.type-of-product-content{
+	border: 2px solid transparent;
+	display: inline-block;
+	height: 450px;
+	margin: auto;
+	position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: bottom;
+	width: 450px;
+	zoom: 1;
+	*display: inline;
+	_height: 450px;
+}
+	.type-of-product-content:hover{
+		border: 2px solid #991c2b;
+	}
+
+.type-of-product-content img{
+	height: auto;
+		max-height: 390px;
+	margin: auto;
+	position: absolute;
+		right: 0;
+		bottom: 3em;
+		left: 0;
+	width: auto;
+		max-width: 400px;
+	background: red;
+}
+.type-of-product-content p {
+	font-weight: 800;
+	margin: 0;
+	text-transform: uppercase;
+	position: absolute;
+		right: 0;
+		bottom: 1em;
+		left: 0;
+		
+	
+}
+	.type-of-product-content:hover p{
+		color: #991c2b;
+	}
+
+/*******
+#	ЭТАПЫ И ВНЕШНИЙ ВИД
+*******/
 #view,
 #options{
 	display: inline-block;
@@ -15,10 +88,6 @@ body {
 	position: relative;
 	vertical-align: top;
 }
-
-/*******
-#	ЭТАПЫ И ВНЕШНИЙ ВИД
-*******/
 #view{
 	width: 60%;
 		min-width: 650px;
@@ -85,6 +154,7 @@ div[id*="step"]{
 }
 #options .option{
 	display: inline-block;
+	position: relative;
 	text-align: center;
 	vertical-align: top;
 	width: 65px;
@@ -92,11 +162,27 @@ div[id*="step"]{
 #options .option input[type="radio"]{
 	display: none;
 }
-#options .option input[type="radio"]:checked+label{
+#options .option input[type="radio"] + label  > img{
+	clip: rect(auto, auto, 30px, auto); /*Обрезаем верхнюю часть*/
+	position: absolute;
+	left: 0;
+	margin: 0 auto;
+	max-height: 60px;
+	right: 0;
+	top: 0;
+	width: auto;
+}
+#options .option input[type="radio"]:checked + label{
     color: #991c2b;
 }
+#options .option input[type="radio"]:checked + label > img{
+	clip: rect(30px, auto, auto, auto); /*Обрезаем нижнюю часть*/
+	top: -30px; /* Сдвиг на половину высоты */
+}
 #options .option label{
+	display: block;
 	font-size: 11px;
+	padding-top: 30px; /* Место для половины высоты спрайта*/
 	word-wrap: break-word;
 }
 /*	END "ОПЦИИ КОНСТРУКТОРА"	*/
