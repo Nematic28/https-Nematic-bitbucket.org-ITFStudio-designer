@@ -1,5 +1,5 @@
 $(function(){
-
+    // Switch
     var $left_button = $('.nav-left');
     var $right_button = $('.nav-right');
 
@@ -7,4 +7,6 @@ $(function(){
 
     var count = $rotations.length;
 
+
+    // auto summit
 });
