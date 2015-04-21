@@ -7,6 +7,5 @@ $(function(){
 
     var count = $rotations.length;
 
-
     // auto summit
 });
