@@ -1,5 +1,5 @@
 <div class="type-of-product">
-    <a href="/designer/view/{{ item.id }}" class="type-of-product-content">
+    <a href="{% url 'view' item.id %}" class="type-of-product-content">
         {% if item.icon %}
             <img src="{{ item.icon.url }}" >
         {% else %}

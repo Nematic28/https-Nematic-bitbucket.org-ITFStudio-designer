@@ -1,12 +1,15 @@
 from designer.models import Catalog
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.template import RequestContext
+from django.shortcuts import get_object_or_404
 
 
 class DesignerForm:
     request = None
     template_name = None
 
-    options = []
-    images = []
+    variables = {}
 
     checked_by_default = {}
 
@@ -27,23 +30,35 @@ class DesignerForm:
 
         return list(map(int, result))
 
+    def __load_steps__(self, root):
+        self.variables['steps'] = Catalog.objects.child(root.root).published().ordered().all()
+
+    def __load_root__(self, element_id):
+        if element_id is None:
+            item = Catalog.objects.child(element_id).published()[0]
+        else:
+            item = get_object_or_404(Catalog, pk=element_id, display=True)
+
+        if item.type.is_link():
+            self.template_name = 'designer/link.html'
+        elif item.type.is_step():
+            self.template_name = 'designer/step.html'
+            self.__load_steps__(item)
+
     def load(self, element_id):
-        root = list(Catalog.objects.child(element_id).published().ordered().all())
-        for item in root:
-            if item.type.is_link():
-                self.template_name = 'designer/link.html'
+        self.__load_root__(element_id)
+        child = Catalog.objects.child(element_id).published().ordered().all()
 
-        self.options = self.__load_options__(root)
-        self.images = self.__load_images__(self.options)
+        for item in child:
+            if item.type.is_step():
+                return redirect('/designer/view/%s' % str(item.id))
 
-    def get_options(self):
-        return self.options
+        options = self.__load_options__(child)
+        self.variables['options'] = options
+        self.variables['images'] = self.__load_images__(options)
+        self.variables['checked_items'] = self.get_checked_items_id()
 
-    def get_images(self):
-        return self.images
-
-    def get_template(self):
-        return self.template_name
+        return self.render()
 
     def __load_images__(self, data):
         items = self.__get_checked_items__(data)
@@ -104,3 +119,6 @@ class DesignerForm:
             return True
 
         return False
+
+    def render(self):
+        return render(self.request, self.template_name, self.variables, context_instance=RequestContext(self.request))

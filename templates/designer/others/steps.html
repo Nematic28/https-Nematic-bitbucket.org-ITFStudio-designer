@@ -1,0 +1,5 @@
+{% for item in steps %}
+    <div class="steps__step">
+        <a href="{% url 'view' item.id %}">{{ item.name }}</a>
+    </div>
+{% endfor %}
