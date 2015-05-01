@@ -46,9 +46,10 @@ a.type-of-product-content{
 	*display: inline;
 	_height: 450px;
 }
-	.type-of-product-content:hover{
-		border: 2px solid #991c2b;
-	}
+
+.type-of-product-content:hover{
+    border: 2px solid #991c2b;
+}
 
 .type-of-product-content img{
 	height: auto;
@@ -73,15 +74,15 @@ a.type-of-product-content{
 		
 	
 }
-	.type-of-product-content:hover p{
-		color: #991c2b;
-	}
+.type-of-product-content:hover p{
+    color: #991c2b;
+}
 
 /*******
 #	ЭТАПЫ И ВНЕШНИЙ ВИД
 *******/
 #view,
-#options{
+.options{
 	display: inline-block;
 	height:100%;
 	margin-top: 2em;
@@ -93,7 +94,7 @@ a.type-of-product-content{
 		min-width: 650px;
 	text-align: center;
 }
-#main-view{
+.main-view{
 	bottom: 0;
 	height: 500px;
 	left: 0;
@@ -103,7 +104,7 @@ a.type-of-product-content{
 	width: 500px;
 	position: absolute;
 }
-#main-view img{
+.main-view img{
 	position: absolute;
 	height: 100%;
 	left: 0;
@@ -111,17 +112,17 @@ a.type-of-product-content{
 	right: 0;
 	width: auto;
 }
-#main-view .nav{
+.main-view .nav{
 	position: absolute;
 	width: 21px;
 	height: 52px;
 	top: 225px;
 	background: url("../image/arrow.png");
 }
-#main-view .nav-left{
+.main-view .nav-left{
 	left: -20px;
 }
-#main-view .nav-right{
+.main-view .nav-right{
 	right: -20px;
 	background-position: 100% 0;
 }
@@ -134,11 +135,11 @@ div[id*="step"]{
 /*******
 #	ОПЦИИ КОНСТРУКТОРА
 *******/
-#options{
+.options{
 	width: 35%;
 		min-width: 350px;
 }
- 	#options:before{
+ 	.options:before{
 		background: url("../image/shadow.png") no-repeat;
 		background-size: cover;
 		content: "";
@@ -148,21 +149,21 @@ div[id*="step"]{
 		width: 8px;
 		z-index: -2;
 	}
-#options .caption{
+.options .caption{
 	color: #991c2b;
 	margin: 1em 0;
 }
-#options .option{
+.options .option{
 	display: inline-block;
 	position: relative;
 	text-align: center;
 	vertical-align: top;
 	width: 65px;
 }
-#options .option input[type="radio"]{
+.options .option input[type="radio"]{
 	display: none;
 }
-#options .option input[type="radio"] + label  > img{
+.options .option input[type="radio"] + label  > img{
 	clip: rect(auto, auto, 30px, auto); /*Обрезаем верхнюю часть*/
 	position: absolute;
 	left: 0;
@@ -172,14 +173,14 @@ div[id*="step"]{
 	top: 0;
 	width: auto;
 }
-#options .option input[type="radio"]:checked + label{
+.options .option input[type="radio"]:checked + label{
     color: #991c2b;
 }
-#options .option input[type="radio"]:checked + label > img{
+.options .option input[type="radio"]:checked + label > img{
 	clip: rect(30px, auto, auto, auto); /*Обрезаем нижнюю часть*/
 	top: -30px; /* Сдвиг на половину высоты */
 }
-#options .option label{
+.options .option label{
 	display: block;
 	font-size: 11px;
 	padding-top: 30px; /* Место для половины высоты спрайта*/
