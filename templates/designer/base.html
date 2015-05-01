@@ -8,12 +8,13 @@
 {% block js %}
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/designer_form.js"></script>
+    <script src="{{ STATIC_URL }}js/designer_view.js"></script>
 {% endblock %}
 
 {% block content %}
 
     <div id="view">
-        <div id="main-view">
+        <div class="main-view">
             {% block view %}
                 {% include 'designer/views/default.html' with images=images %}
             {% endblock %}
@@ -22,7 +23,7 @@
         </div>
     </div>
 
-    <div id="options">
+    <div class="options">
     {% block options %}
         {% include 'designer/options/default.html' with items=options checked_items=checked_items %}
     {% endblock %}
