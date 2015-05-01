@@ -1,5 +1,5 @@
 {% for key, rotation in images.items %}
-    <div>
+    <div class="image-set">
     {% for image in rotation %}
         <img src="{{ image.file.url }}" style="z-index: {{ image.layer }}">
     {% endfor %}
