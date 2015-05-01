@@ -48,6 +48,7 @@ class FieldType(models.Model):
     TYPE_RADIO = 'radio'
     TYPE_LABEL = 'label'
     TYPE_LINK = 'link'
+    TYPE_STEP = 'step'
 
     class Meta:
         verbose_name = 'тип'
@@ -64,6 +65,9 @@ class FieldType(models.Model):
 
     def is_link(self):
         return self.machine == self.TYPE_LINK
+
+    def is_step(self):
+        return self.machine == self.TYPE_STEP
 
     def template(self):
         return '%s/%s/%s.%s' % ('designer', 'types', self.machine, 'html')
@@ -99,7 +103,7 @@ class Catalog(models.Model):
         return self.name
 
     def three_name(self):
-        return "%s %s" % ('-' * self.level(), self.name)
+        return "%s %s" % ('--' * self.level(), self.name)
 
     def images(self):
         return Image.objects.by_catalog_id(self.id).ordered().all()
