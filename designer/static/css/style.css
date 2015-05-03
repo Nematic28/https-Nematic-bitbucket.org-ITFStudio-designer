@@ -17,6 +17,7 @@ body {
 	font-size: 0;
 	width: 1024px;
 	margin: 0 auto;
+    height:100%;
 }
 .type-of-product{
 	display: inline-block;
