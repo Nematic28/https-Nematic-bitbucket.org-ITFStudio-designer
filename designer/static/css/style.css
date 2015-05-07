@@ -28,6 +28,7 @@ body {
 	width: 50%;
 	zoom: 1;
 	*display: inline;
+    /*это тест*/
 }
 a.type-of-product-content{
 	border: 2px solid transparent;
