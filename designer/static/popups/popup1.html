@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="mCustomScrollbar/jquery.mCustomScrollbar.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script>
+		(function($){
+			$(window).load(function(){
+				$(".main-picker").mCustomScrollbar({
+					theme: "rounded"
+				});
+			});
+		})(jQuery);
+	</script>
+</head>
+<body>
+
+<div id="popup-overlay">
+    <div id="popup">
+		<div class="color-picker">
+        <p>Выберите цвет:</p>
+			<div class="color">
+				<input type="radio" id="red" name="choose-color">
+				<label for="red"><img src="colors/red.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="orange" name="choose-color">
+				<label for="orange"><img src="colors/orange.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="yellow" name="choose-color">
+				<label for="yellow"><img src="colors/yellow.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="green" name="choose-color">
+				<label for="green"><img src="colors/green.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="cyan" name="choose-color">
+				<label for="cyan"><img src="colors/cyan.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="blue" name="choose-color">
+				<label for="blue"><img src="colors/blue.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="purple" name="choose-color">
+				<label for="purple"><img src="colors/purple.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="brown" name="choose-color">
+				<label for="brown"><img src="colors/brown.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="black" name="choose-color">
+				<label for="black"><img src="colors/black.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="grey" name="choose-color">
+				<label for="grey"><img src="colors/grey.png"></label>
+			</div>
+			<div class="color">
+				<input type="radio" id="white" name="choose-color">
+				<label for="white"><img src="colors/white.png"></label>
+			</div>
+		</div>	
+    </div>
+</div>
+</body>
+</html>

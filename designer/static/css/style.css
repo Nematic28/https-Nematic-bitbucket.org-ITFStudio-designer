@@ -9,6 +9,7 @@ body {
 }
 * {
 	box-sizing: border-box;
+	outline: 0;
 }
 /*******
 #	ВЫБОР ТИПА
@@ -28,7 +29,6 @@ body {
 	width: 50%;
 	zoom: 1;
 	*display: inline;
-    /*это тест*/
 }
 a.type-of-product-content{
 	border: 2px solid transparent;
@@ -63,7 +63,6 @@ a.type-of-product-content{
 		left: 0;
 	width: auto;
 		max-width: 400px;
-	background: red;
 }
 .type-of-product-content p {
 	font-weight: 800;
@@ -73,8 +72,6 @@ a.type-of-product-content{
 		right: 0;
 		bottom: 1em;
 		left: 0;
-		
-	
 }
 .type-of-product-content:hover p{
     color: #991c2b;
@@ -189,3 +186,148 @@ div[id*="step"]{
 	word-wrap: break-word;
 }
 /*	END "ОПЦИИ КОНСТРУКТОРА"	*/
+
+/*******
+#	ВСПЛЫВАЮЩИЕ ОКНА
+*******/
+#popup-overlay {
+    /* display: none; */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center
+    }
+    #popup-overlay:after {
+        display: inline-block;
+        height: 100%;
+        width: 0;
+        vertical-align: middle;
+        content: ''
+    }
+#popup-overlay  p{
+	margin-top: 0;
+}
+#popup {
+    background: rgba(235, 235, 235, 0.95);
+    border: 1px solid #bcbec0;
+    border-radius: 15px;
+    display: inline-block;
+	max-height: 80%;
+    max-width: 700px;
+    padding: 20px;
+    position: relative;
+	text-align: right;
+    vertical-align: middle;
+}
+#popup .popup-row{
+	border-bottom: 1px solid #bcbec0;
+	font-size: 0;
+	margin: 0 0 10px;
+	padding: 0 0 10px;
+}
+#popup .color-picker,
+#popup .texture-picker{
+	display: inline-block;
+	font-size: 14px;
+	text-align: left;
+	vertical-align: bottom;
+}
+#popup .popup-row .color-picker,
+#popup .popup-row .texture-picker{
+	margin: 0 1%;	
+}
+/*Выбор цвета*/
+#popup .popup-row .color-picker{
+	width: 64%
+}
+
+#popup .color{
+	display: inline-block;
+	font-size: 0px;
+	position: relative;
+	text-align: center;
+	vertical-align: top;
+}
+#popup .color input[type="radio"]{
+	display: none;
+}
+#popup .color input[type="radio"] + label  > img{
+	border: 2px solid transparent;
+	cursor:  pointer;
+	height: 30px;
+	width: 30px;
+}
+	#popup .color input[type="radio"]:checked + label > img{
+		border: 2px solid #991c2b;
+	}
+/*Выбор текстуры*/
+#popup .texture-picker{
+	width: 32%;
+}
+#popup .texture-picker .texture{
+	display: inline-block;
+	margin: 0 5px 5px 0;
+}
+#popup .texture-picker input[type="checkbox"]{
+	display: none;
+}
+#popup .texture-picker input[type="checkbox"] + label{
+	cursor:  pointer;
+	text-transform: uppercase;
+	padding-left: 15px;
+	position: relative;
+}
+	#popup .texture-picker label:before{
+		content: '';
+		background: url("../popups/texture-picker.png") 0 100%;
+		height: 10px;
+		position: absolute;
+			left: 0px;
+			top: 25%;
+		width: 10px;
+	}
+	#popup .texture-picker input[type="checkbox"]:checked + label:before{
+		background: url("../popups/texture-picker.png") 100% 0;
+	}
+#popup .texture-picker input[type="text"]{
+	border: 1px solid #bcbec0;
+	border-radius: 5px;
+	padding: 0 0.5em;
+	width: 210px;
+	outline: 0;
+}
+#popup input[type="button"]{
+	background: #991c2b;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor:  pointer;
+	padding: 0.3em 1em;
+	text-transform: uppercase;
+}
+/*Основной блок выбора*/
+#popup .main-picker{
+	font-size: 0;
+	max-height: 280px;
+	overflow-y: auto;
+	text-align: left;
+	width: 100%;
+}
+#popup .main-picker .pattern{
+	display: inline-block;
+	cursor: pointer;
+}
+#popup .main-picker .pattern img{
+	/* margin:1px; */
+	width: 70px;
+	height: 70px;
+	padding: 3px;
+	border: 1px solid transparent;
+}
+	#popup .main-picker .pattern:hover img{
+		border: 1px solid #991c2b;
+	}
+
+/*	END "ВСПЛЫВАЮЩИЕ ОКНА"	*/
