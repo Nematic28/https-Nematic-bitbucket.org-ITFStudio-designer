@@ -49,13 +49,30 @@ class FieldType(models.Model):
     TYPE_LABEL = 'label'
     TYPE_LINK = 'link'
     TYPE_STEP = 'step'
+    TYPE_POPUP = 'popup'
+    TYPES = (
+        (TYPE_RADIO, 'Переключатель'),
+        (TYPE_LABEL, 'Заголовок'),
+        (TYPE_LINK, 'Ссылка'),
+        (TYPE_STEP, 'Шаг'),
+        (TYPE_POPUP, 'Всплывающее окно')
+    )
+
+    STORAGE_INNER = 'inner'
+    STORAGE_OUTER = 'outer'
+    STORAGE_TYPES = (
+        (STORAGE_INNER, 'Внутри'),
+        (STORAGE_OUTER, 'Снаружи'),
+    )
 
     class Meta:
         verbose_name = 'тип'
         verbose_name_plural = 'типы'
 
-    name = models.CharField('Название', max_length=255, null=False)
-    machine = models.CharField('Машинное имя', max_length=255, null=False, unique=True)
+    name = models.CharField('Название', max_length=255)
+    machine = models.CharField('Машинное имя', max_length=255, choices=TYPES, unique=True)
+    storage = models.CharField('Тип хранения данных', max_length=255, choices=STORAGE_TYPES, default=STORAGE_OUTER)
+    autoload = models.BooleanField('Авто подгрузка данынх', default=False)
 
     def __str__(self):
         return self.name
