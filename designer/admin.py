@@ -51,7 +51,7 @@ class CatalogAdmin(admin.ModelAdmin):
     ]
 
     list_display = ('three_name', 'count_images', 'date_create', 'date_modify', 'display')
-    list_filter = ('date_create', 'date_modify', 'display')
+    list_filter = ('date_create', 'date_modify')
     readonly_fields = ('date_create', 'date_modify')
     ordering = ('left',)
 
