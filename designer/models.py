@@ -60,7 +60,7 @@ class FieldType(models.Model):
 
     STORAGE_INNER = 'inner'
     STORAGE_OUTER = 'outer'
-    STORAGE_TYPES = (
+    STORAGES = (
         (STORAGE_INNER, 'Внутри'),
         (STORAGE_OUTER, 'Снаружи'),
     )
@@ -71,20 +71,26 @@ class FieldType(models.Model):
 
     name = models.CharField('Название', max_length=255)
     machine = models.CharField('Машинное имя', max_length=255, choices=TYPES, unique=True)
-    storage = models.CharField('Тип хранения данных', max_length=255, choices=STORAGE_TYPES, default=STORAGE_OUTER)
+    storage = models.CharField('Тип хранения данных', max_length=255, choices=STORAGES, default=STORAGE_OUTER)
     autoload = models.BooleanField('Авто подгрузка данынх', default=False)
 
     def __str__(self):
         return self.name
 
+    def is_type_of(self, type):
+        return self.machine == type
+
     def is_label(self):
-        return self.machine == self.TYPE_LABEL
+        return self.is_type_of(self.TYPE_LABEL)
 
     def is_link(self):
-        return self.machine == self.TYPE_LINK
+        return self.is_type_of(self.TYPE_LINK)
 
     def is_step(self):
-        return self.machine == self.TYPE_STEP
+        return self.is_type_of(self.TYPE_STEP)
+
+    def is_popup(self):
+        return self.is_type_of(self.TYPE_POPUP)
 
     def template(self):
         return '%s/%s/%s.%s' % ('designer', 'types', self.machine, 'html')
