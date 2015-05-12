@@ -77,6 +77,9 @@ class FieldType(models.Model):
     def __str__(self):
         return self.name
 
+    def have_to_load(self):
+        return self.autoload
+
     def is_type_of(self, type):
         return self.machine == type
 

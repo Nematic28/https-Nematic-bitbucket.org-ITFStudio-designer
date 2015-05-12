@@ -6,11 +6,8 @@ from django.shortcuts import get_object_or_404
 
 
 class DesignerForm:
-    request = None
-    template_name = None
 
     variables = {}
-
     checked_by_default = {}
 
     def __init__(self, request, template_name):
@@ -109,16 +106,12 @@ class DesignerForm:
 
     def __need_to_load__(self, item):
 
+        if item.type.have_to_load():
+            return True
         if self.request.POST.getlist(item.input_name()):
             return self.__choice_from_form__(item)
-        elif item.type.is_link():
-            return False
-        elif item.type.is_label():
-            return True
-        elif item.default:
-            return True
 
-        return False
+        return item.default
 
     def render(self):
         return render(self.request, self.template_name, self.variables, context_instance=RequestContext(self.request))
