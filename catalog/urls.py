@@ -12,4 +12,5 @@ urlpatterns = patterns('',
                        # url(r'^designer/(\d+)', 'designer.views.index'),
                        url(r'^designer/view/(\d+)$', 'designer.views.catalog', name='view'),
                        url(r'^designer/view/$', 'designer.views.catalog', name='main'),
-                       ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                       ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+                         + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
