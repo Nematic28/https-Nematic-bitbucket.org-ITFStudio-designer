@@ -41,6 +41,7 @@ a.type-of-product-content{
 	display: inline-block;
 	height: 450px;
 	margin: auto;
+    overflow: hidden;
 	position: absolute;
 		top: 0;
 		right: 0;
@@ -56,7 +57,6 @@ a.type-of-product-content{
 }
 
 .type-of-product-content img{
-    clip: rect(auto, auto, 400px, auto); /*Обрезаем нижнюю часть*/
     height: auto;
     max-height: 800px;
     margin: auto;
@@ -64,14 +64,10 @@ a.type-of-product-content{
     right: 0;
     bottom: 3em;
     left: 0;
-    top: 400px;
     width: auto;
     max-width: 400px;
 }
-    .type-of-product-content img:hover {
-        clip: rect(400px, auto, auto, auto); /*Обрезаем верхнюю часть*/
-        top: -400px; /* Поднимаем наверх*/
-    }
+
 .type-of-product-content p {
 	font-weight: 800;
 	margin: 0;
