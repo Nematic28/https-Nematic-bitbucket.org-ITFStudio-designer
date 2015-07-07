@@ -1,7 +1,5 @@
 {% extends 'designer/base.html' %}
-
 {% block content %}
-
     <div id="view">
         <div class="main-view">
             {% block view %}
@@ -11,7 +9,6 @@
             <div class="nav nav-right"></div>
         </div>
     </div>
-
     <div class="options">
     {% block steps %}
         {% include 'designer/others/steps.html' with steps=steps %}

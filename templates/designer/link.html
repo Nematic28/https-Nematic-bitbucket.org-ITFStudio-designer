@@ -5,6 +5,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 {% endblock %}
 
+{% block js %}
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/script.js"></script>
+{% endblock %}
+
 {% block content %}
     <div id="type-of-products-wrapper">
     {% block options %}

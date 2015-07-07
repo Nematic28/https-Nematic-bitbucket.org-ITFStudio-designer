@@ -30,8 +30,14 @@ body {
 	zoom: 1;
 	*display: inline;
 }
+.three .type-of-product{
+    width: 33%;
+}
+.more-than-three .type-of-product{
+    width: 33%;
+    height: 50%;
+}
 a.type-of-product-content{
-	border: 2px solid transparent;
 	display: inline-block;
 	height: 450px;
 	margin: auto;
@@ -49,21 +55,23 @@ a.type-of-product-content{
 	_height: 450px;
 }
 
-.type-of-product-content:hover{
-    border: 2px solid #991c2b;
-}
-
 .type-of-product-content img{
-	height: auto;
-		max-height: 390px;
-	margin: auto;
-	position: absolute;
-		right: 0;
-		bottom: 3em;
-		left: 0;
-	width: auto;
-		max-width: 400px;
+    clip: rect(auto, auto, 400px, auto); /*Обрезаем нижнюю часть*/
+    height: auto;
+    max-height: 800px;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    bottom: 3em;
+    left: 0;
+    top: 400px;
+    width: auto;
+    max-width: 400px;
 }
+    .type-of-product-content img:hover {
+        clip: rect(400px, auto, auto, auto); /*Обрезаем верхнюю часть*/
+        top: -400px; /* Поднимаем наверх*/
+    }
 .type-of-product-content p {
 	font-weight: 800;
 	margin: 0;
