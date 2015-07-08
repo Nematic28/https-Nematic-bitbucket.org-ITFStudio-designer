@@ -1,10 +1,11 @@
 /**
  * Created by bykovsky on 07.07.2015.
  */
-$(function () {
+$( window ).load(function() {
     var $product_type = $('.type-of-product-content');
     $product_type.each(function(){
         var $half_height = ($(this).children('img').height() / 2).toString() ;
+
         $(this).children('img').css({
             'clip' : 'rect(auto auto '+$half_height+'px auto)',
             top: $half_height+'px'
