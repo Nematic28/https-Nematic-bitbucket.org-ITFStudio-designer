@@ -8,7 +8,7 @@ $( window ).load(function() {
 
         $(this).children('img').css({
             'clip' : 'rect(auto auto '+$half_height+'px auto)',
-            top: $half_height+'px'
+            top: 0+'px'
         });
         $(this).children('img').hover(function(){
             $(this).css({
@@ -18,7 +18,7 @@ $( window ).load(function() {
         },function(){
             $(this).css({
                 'clip' : 'rect(auto auto '+$half_height+'px auto)',
-                top: $half_height+'px'
+                top: 0+'px'
             });
         });
     });

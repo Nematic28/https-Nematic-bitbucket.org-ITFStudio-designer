@@ -38,7 +38,7 @@ body {
     height: 50%;
 }
 a.type-of-product-content{
-	display: inline-block;
+    display: inline-block;
 	height: 450px;
 	margin: auto;
     overflow: hidden;
@@ -50,22 +50,23 @@ a.type-of-product-content{
 	text-align: center;
 	text-decoration: none;
 	vertical-align: bottom;
-	width: 450px;
+	width: 100%;
 	zoom: 1;
 	*display: inline;
 	_height: 450px;
 }
 
 .type-of-product-content img{
+    border: 0; /* IE 9 */
     height: auto;
     max-height: 800px;
-    margin: auto;
+    margin: 0 auto;
     position: absolute;
-    right: 0;
-    bottom: 3em;
-    left: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     width: auto;
-    max-width: 400px;
+        max-width: 100%;
 }
 
 .type-of-product-content p {
