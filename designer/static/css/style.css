@@ -5,20 +5,45 @@ body {
 	font: 14px Calibri;
 	margin: 0;
 	width: 100%;
-		min-width: 1024px;
+		min-width: 1024px
 }
 * {
 	box-sizing: border-box;
 	outline: 0;
 }
+body{
+    background: url("../image/acar-constructor-bg.svg") no-repeat;
+	background-size: cover;
+}
+header{
+    height: 200px;
+    margin: 0 auto;
+    width: 900px;
+}
+header #logo {
+    display: block;
+    padding: 50px 0 0;
+    position: relative;
+    width: 169px;
+    z-index: 4;
+}
+#logo img{
+    width: 100%;
+}
+header hr{
+  border: 3px solid #9A152B;
+  margin: 10px 0 0 0px;
+  width: 650px;
+}
 /*******
 #	ВЫБОР ТИПА
 *******/
 #type-of-products-wrapper{
-	font-size: 0;
-	width: 1024px;
-	margin: 0 auto;
     height:100%;
+    font-size: 0;
+    margin: -200px auto 0;
+    padding: 200px 0 0;
+    width: 1024px;
 }
 .type-of-product{
 	display: inline-block;
@@ -39,7 +64,7 @@ body {
 }
 a.type-of-product-content{
     display: inline-block;
-	height: 450px;
+	height: 400px;
 	margin: auto;
     overflow: hidden;
 	position: absolute;
@@ -88,10 +113,10 @@ a.type-of-product-content{
 #view,
 .options{
 	display: inline-block;
-	height:100%;
-	margin-top: 2em;
-	position: relative;
-	vertical-align: top;
+    margin: -200px auto 0;
+    padding: 200px 0 0;
+    position: relative;
+    vertical-align: top;
 }
 #view{
 	width: 60%;
@@ -103,7 +128,7 @@ a.type-of-product-content{
 	height: 500px;
 	left: 0;
 	right: 0;
-	top: 0;
+	top: 200px;
 	margin: 0 auto;
 	width: 500px;
 	position: absolute;
@@ -117,11 +142,12 @@ a.type-of-product-content{
 	width: auto;
 }
 .main-view .nav{
-	position: absolute;
-	width: 21px;
-	height: 52px;
-	top: 225px;
-	background: url("../image/arrow.png");
+    background: url("../image/arrow.png");
+    cursor: pointer;
+    height: 70px;
+    position: absolute;
+    top: 225px;
+    width: 39px;
 }
 .main-view .nav-left{
 	left: -20px;
@@ -144,9 +170,8 @@ div[id*="step"]{
 		min-width: 350px;
 }
  	.options:before{
-		background: url("../image/shadow.png") no-repeat;
-		background-size: cover;
-		content: "";
+		border-left: dotted 3px #bcbdbf;
+        content: "";
 		height: 100%;
 		left: -30px;
 		position: absolute;
