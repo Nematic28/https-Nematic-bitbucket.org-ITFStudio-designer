@@ -16,7 +16,7 @@ body{
 	background-size: cover;
 }
 header{
-    margin: 0 auto;
+    margin: 0 auto 10px;
     width: 900px;
 }
 header #logo {

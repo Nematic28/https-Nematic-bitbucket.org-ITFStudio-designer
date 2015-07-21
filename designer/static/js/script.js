@@ -1,7 +1,7 @@
 /**
  * Created by bykovsky on 07.07.2015.
  */
-$( window ).load(function() {
+function rect(){
     var $product_type = $('.type-of-product-content');
     $product_type.each(function(){
         var $half_height = ($(this).children('img').height() / 2).toString() ;
@@ -22,6 +22,13 @@ $( window ).load(function() {
             });
         });
     });
+}
+
+$( window ).load(function() {
+    rect();
+});
+$( window ).resize(function() {
+    rect();
 });
 $(function () {
     var $product = $('.type-of-product');
@@ -41,5 +48,5 @@ $(function () {
         }
     });
 
-    console.log($count)
+    //console.log($count)
 });
