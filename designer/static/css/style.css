@@ -16,7 +16,7 @@ body{
 	background-size: cover;
 }
 header{
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
     width: 900px;
 }
@@ -41,14 +41,15 @@ header hr{
 #type-of-products-wrapper{
     height:100%;
     font-size: 0;
-    margin: -200px auto 0;
-    padding: 200px 0 0;
+    margin: -150px auto 0;
+    padding: 150px 0 0;
     width: 1024px;
 }
 .type-of-product{
 	display: inline-block;
 	height:100%;
 	font-size: 14px;
+    margin: 10px 0;
 	position: relative;
 	vertical-align: bottom;
 	width: 50%;
@@ -64,7 +65,7 @@ header hr{
 }
 a.type-of-product-content{
     display: inline-block;
-	height: 400px;
+	height: 100%;
 	margin: auto;
     overflow: hidden;
 	position: absolute;
@@ -74,17 +75,17 @@ a.type-of-product-content{
 		left: 0;
 	text-align: center;
 	text-decoration: none;
-	vertical-align: bottom;
+	vertical-align: top;
 	width: 100%;
 	zoom: 1;
 	*display: inline;
-	_height: 450px;
+	_height: 100%;
 }
 
 .type-of-product-content img{
     border: 0; /* IE 9 */
     height: auto;
-    max-height: 800px;
+    max-height: 200%;
     margin: 0 auto;
     position: absolute;
         right: 0;
