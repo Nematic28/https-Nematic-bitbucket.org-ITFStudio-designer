@@ -16,7 +16,6 @@ body{
 	background-size: cover;
 }
 header{
-    height: 150px;
     margin: 0 auto;
     width: 900px;
 }
@@ -49,7 +48,6 @@ header hr{
 	display: inline-block;
 	height:100%;
 	font-size: 14px;
-    margin: 10px 0;
 	position: relative;
 	vertical-align: bottom;
 	width: 50%;
@@ -66,6 +64,7 @@ header hr{
 a.type-of-product-content{
     display: inline-block;
 	height: 100%;
+        max-height: 400px;
 	margin: auto;
     overflow: hidden;
 	position: absolute;
