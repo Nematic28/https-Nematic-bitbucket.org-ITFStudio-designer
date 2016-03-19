@@ -4,8 +4,9 @@
 
 {% csrf_token %}
 
+<input type="hidden" name="id_click" value="{{ id_click }}" />
 {% for item in items %}
-{% include item.type.template with item=item checked_items=checked_items %}
+        {% include item.type.template with item=item checked_items=checked_items %}
 {% endfor %}
 
 </form>

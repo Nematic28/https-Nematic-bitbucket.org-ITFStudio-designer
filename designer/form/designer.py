@@ -58,6 +58,7 @@ class DesignerForm:
         self.variables['images'] = self.__load_images__(options)
         self.variables['checked_items'] = self.get_checked_items_id()
 
+        self.variables['id_click'] = self.request.POST.get("id_click","");
         return self.render()
 
     def __load_images__(self, data):
@@ -91,7 +92,7 @@ class DesignerForm:
                 self.checked_by_default[item.input_name()] = item.id
             result.append(item)
 
-            if item.type.is_label():
+            if item.type.is_label() or item.type.is_popup():
                 result += self.__load_options__(item.child())
             else:
                 if self.__need_to_load__(item):
