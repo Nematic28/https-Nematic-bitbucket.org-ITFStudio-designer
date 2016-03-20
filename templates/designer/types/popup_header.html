@@ -1,68 +1,24 @@
 <div class="popup-overlay" id ="popup_{{ item.root.id }}">
     <div class="popup">
-		<div class="popup-row">
+		<div class="popup-row" data-filter="1">
 			<div class="color-picker">
 				<p>Выберите цвет и текстуру:</p>
-        <div class="color">
-                        <input type="radio" data-id="red" name="choose-color">
-                        <label for="red"><img src="/static/popups/colors/red.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="orange" name="choose-color">
-                        <label for="orange"><img src="/static/popups/colors/orange.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="yellow" name="choose-color">
-                        <label for="yellow"><img src="/static/popups/colors/yellow.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="green" name="choose-color">
-                        <label for="green"><img src="/static/popups/colors/green.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="cyan" name="choose-color">
-                        <label for="cyan"><img src="/static/popups/colors/cyan.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="blue" name="choose-color">
-                        <label for="blue"><img src="/static/popups/colors/blue.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="purple" name="choose-color">
-                        <label for="purple"><img src="/static/popups/colors/purple.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="brown" name="choose-color">
-                        <label for="brown"><img src="/static/popups/colors/brown.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="black" name="choose-color">
-                        <label for="black"><img src="/static/popups/colors/black.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="grey" name="choose-color">
-                        <label for="grey"><img src="/static/popups/colors/grey.png"></label>
-                    </div>
-                    <div class="color">
-                        <input type="radio" data-id="white" name="choose-color">
-                        <label for="white"><img src="/static/popups/colors/white.png"></label>
-                    </div>
 
+                {% for color in colors %}
+                    <div class="color">
+                        <input type="radio" data-id="{{ color.id }}" name="color_{{ item.root.id }}"  id="color_{{ item.root.id }}_{{ color.id }}">
+                        <label for="color_{{ item.root.id }}_{{ color.id }}"><img alt="{{ color.name }}" src="{{ color.icon.url }}"></label>
+                    </div>
+                {% endfor %}
 			</div>
 			<div class="texture-picker">
-				<div class="texture">
-					<input type="checkbox" data-id="texture" name="texture">
-					<label for="texture">Текстурная</label>
-				</div>
-				<div class="texture">
-					<input type="checkbox" data-id="smooth" name="smooth">
-					<label for="smooth">Гладкая</label>
-				</div>
-				<div class="texture">
-					<input type="checkbox" data-id="leather" name="leather">
-					<label for="leather">Текстура натуральной кожи</label>
-				</div>
-				<input type="text">
+                {% for texture in textures %}
+                    <div class="texture">
+                        <input type="checkbox" data-id="{{ texture.id }}" name="texture_{{ item.root.id }}"  id="texture_{{ item.root.id }}_{{ texture.id }}">
+                        <label for="texture_{{ item.root.id }}_{{ texture.id }}">{{ texture.name }}</label>
+                    </div>
+                {% endfor %}
+				<input type="text" name = "name">
 			</div>
 		</div>
 		<div class="popup-row">

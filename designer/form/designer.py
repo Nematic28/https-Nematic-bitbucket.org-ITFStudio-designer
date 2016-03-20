@@ -1,4 +1,4 @@
-from designer.models import Catalog
+from designer.models import Catalog, Color, Texture, Selector
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template import RequestContext
@@ -56,10 +56,17 @@ class DesignerForm:
         options = self.__load_options__(child)
         self.variables['options'] = options
         self.variables['images'] = self.__load_images__(options)
+        self.variables['colors'] = self.__load_colors__()
+        self.variables['textures'] = self.__load_textures__()
         self.variables['checked_items'] = self.get_checked_items_id()
-
         self.variables['id_click'] = self.request.POST.get("id_click","");
         return self.render()
+
+    def __load_colors__(self):
+        return Color.objects.all()
+
+    def __load_textures__(self):
+        return Texture.objects.all()
 
     def __load_images__(self, data):
         items = self.__get_checked_items__(data)

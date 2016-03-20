@@ -28,6 +28,12 @@ class Helper():
         return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE_MAIN, str(parent), new_name, extension)
 
     @staticmethod
+    def dop_image(instance, filename):
+        extension = Helper.get_extension(filename)
+        new_name = Helper.get_random_string()
+        return '%s/%s.%s' % (catalog.settings.DESIGNER_IMAGE_MAIN + '/add', new_name, extension)
+
+    @staticmethod
     def catalog_logo(instance, filename):
         extension = Helper.get_extension(filename)
 
@@ -41,6 +47,32 @@ class Helper():
 
         new_name = Helper.get_random_string()
         return '%s/%s_%s.%s' % (catalog.settings.DESIGNER_IMAGE_LOGO, str(catalog_id), new_name, extension)
+
+class Selector(models.Model):
+    class Meta:
+        verbose_name = 'иконка переключателя'
+        verbose_name_plural = 'иконки переключателя'
+    name = models.CharField('Название', max_length=255)
+    icon = models.ImageField('Иконка', upload_to=Helper.dop_image, blank=True)
+    def __str__(self):
+        return self.name
+
+class Color(models.Model):
+    class Meta:
+        verbose_name = 'цвет'
+        verbose_name_plural = 'цвета'
+    name = models.CharField('Название', max_length=255)
+    icon = models.ImageField('Иконка', upload_to=Helper.dop_image, blank=True)
+    def __str__(self):
+        return self.name
+
+class Texture(models.Model):
+    class Meta:
+        verbose_name = 'текстура'
+        verbose_name_plural = 'текстуры'
+    name = models.CharField('Название', max_length=255)
+    def __str__(self):
+        return self.name
 
 
 class FieldType(models.Model):
@@ -86,6 +118,12 @@ class Catalog(models.Model):
     root = models.ForeignKey('self', blank=True, null=True, help_text='Three of steps')
     type = models.ForeignKey(FieldType, verbose_name='Тип элемента', null=False,
                              help_text='Тип элемента для отображения')
+    selector = models.ForeignKey(Selector, verbose_name='Иконка переключателя', null=True, blank=True,
+                             help_text='Иконка переключателя из справочника')
+    color = models.ForeignKey(Color, verbose_name='Цвет', null=True, blank=True,
+                             help_text='Цвет для фильтрации')
+    texture = models.ForeignKey(Texture, verbose_name='Текстура', null=True, blank=True,
+                             help_text='Текстура для фильтрации')
 
     date_create = models.DateTimeField('Дата создания', auto_now_add=True)
     date_modify = models.DateTimeField('Посл. изменения', auto_now_add=True)

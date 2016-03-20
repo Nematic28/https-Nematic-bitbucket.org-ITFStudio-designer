@@ -1,4 +1,4 @@
-				<div class="pattern">
+				<div class="pattern" data-color="{{ item.color.id }}" data-texture = "{{ item.texture.id }}" data-name="{{ item.name }}">
                     <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}" {% if item.id in checked_items %}checked{% endif %}/>
-					<label for="{{ item.form_name }}"><img src=" {% if item.icon %}{{ item.icon.url }}{% endif %}"/>{{ item.name }}</label>
+					<label for="{{ item.form_name }}"><img alt="{{ item.name }}" src="{% if item.icon %}{{ item.icon.url }}{% endif %}" /></label>
 				</div>

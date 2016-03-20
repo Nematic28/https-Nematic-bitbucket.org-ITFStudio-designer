@@ -6,7 +6,11 @@
 
 <input type="hidden" name="id_click" value="{{ id_click }}" />
 {% for item in items %}
+    {% if item.type.machine_name == 'popup_header' %}
+        {% include item.type.template with item=item checked_items=checked_items colors=colors textures=textures %}
+    {% else %}
         {% include item.type.template with item=item checked_items=checked_items %}
+    {% endif %}
 {% endfor %}
 
 </form>

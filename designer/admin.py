@@ -6,7 +6,7 @@ from django.utils.text import mark_safe, capfirst
 from django.utils.html import escape
 from django import forms
 from django import template
-from .models import Catalog, Image, FieldType
+from .models import Catalog, Image, FieldType, Selector, Color, Texture
 # Register your models here.
 
 admin.AdminSite.site_title = 'Панель администратора'
@@ -45,7 +45,7 @@ class CatalogAdmin(admin.ModelAdmin):
     form = CatalogAdminForm
 
     fieldsets = [
-        ('Основное',    {'fields': ['name', 'root', 'type', 'icon']}),
+        ('Основное',    {'fields': ['name', 'root', 'type', 'color','texture', 'selector','icon']}),
         ('Информация',  {'fields': [('date_modify', 'date_create')]}),
         ('Настройки',   {'fields': ['default', 'display', 'layer']}),
     ]
@@ -126,3 +126,6 @@ class CatalogAdmin(admin.ModelAdmin):
 
 admin.site.register(Catalog, CatalogAdmin)
 admin.site.register(FieldType)
+admin.site.register(Selector)
+admin.site.register(Color)
+admin.site.register(Texture)
