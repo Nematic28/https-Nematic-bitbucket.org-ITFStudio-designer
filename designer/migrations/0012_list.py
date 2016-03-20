@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='catalog',
-            name='tex',
+            name='texture',
             field=models.ForeignKey(help_text='Текстура', to='designer.Texture', verbose_name='Текстура',null=True, blank=True),
 
         ),
