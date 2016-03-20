@@ -47,20 +47,20 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='catalog',
             name='selector',
-            field=models.ForeignKey(help_text='Иконка переключателя', to='designer.Selector', verbose_name='Иконка переключателя'),
+            field=models.ForeignKey(help_text='Иконка переключателя', to='designer.Selector', verbose_name='Иконка переключателя',null=True, blank=True),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='catalog',
             name='color',
-            field=models.ForeignKey(help_text='Цвет', to='designer.Color', verbose_name='Цвет'),
+            field=models.ForeignKey(help_text='Цвет', to='designer.Color', verbose_name='Цвет',null=True, blank=True),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='catalog',
             name='tex',
-            field=models.ForeignKey(help_text='Текстура', to='designer.Texture', verbose_name='Текстура'),
-            preserve_default=True,
+            field=models.ForeignKey(help_text='Текстура', to='designer.Texture', verbose_name='Текстура',null=True, blank=True),
+
         ),
     ]
 
