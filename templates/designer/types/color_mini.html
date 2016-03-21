@@ -1,0 +1,4 @@
+                <div class="color">
+                    <input type="radio" id="{{ item.form_name }}" name="{{ item.input_name }}" value="{{ item.id }}" {% if item.id in checked_items %}checked{% endif %}/>
+                    <label for="{{ item.form_name }}"><img alt="{{ item.name }}" src="{% if item.color.icon %}{{ item.color.icon.url }}{% endif %}" /></label>
+                </div>

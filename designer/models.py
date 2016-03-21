@@ -101,7 +101,7 @@ class FieldType(models.Model):
     def is_step(self):
         return self.machine == self.TYPE_STEP
     def is_popup(self):
-        return (self.machine == 'popup_header' or self.machine == 'popup_footer')
+        return (self.machine == 'popup_header' or self.machine == 'popup_footer' or self.machine == 'popup_header_mini' or self.machine == 'popup_footer_mini')
 
     def template(self):
         return '%s/%s/%s.%s' % ('designer', 'types', self.machine, 'html')
