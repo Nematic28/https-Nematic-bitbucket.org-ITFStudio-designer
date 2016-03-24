@@ -4,7 +4,7 @@
 			<div class="color-picker">
 				<p>Выберите цвет и текстуру:</p>
 
-                {% for color in colors %}
+                {% for key,color in colors.items %}
                     <div class="color">
                         <input type="radio" data-id="{{ color.id }}" name="color_{{ item.root.id }}"  id="color_{{ item.root.id }}_{{ color.id }}">
                         <label for="color_{{ item.root.id }}_{{ color.id }}"><img alt="{{ color.name }}" src="{{ color.icon.url }}"></label>
@@ -12,7 +12,7 @@
                 {% endfor %}
 			</div>
 			<div class="texture-picker">
-                {% for texture in textures %}
+                {% for key, texture in textures.items %}
                     <div class="texture">
                         <input type="checkbox" data-id="{{ texture.id }}" name="texture_{{ item.root.id }}"  id="texture_{{ item.root.id }}_{{ texture.id }}">
                         <label for="texture_{{ item.root.id }}_{{ texture.id }}">{{ texture.name }}</label>
