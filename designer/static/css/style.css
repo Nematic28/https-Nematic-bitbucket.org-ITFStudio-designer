@@ -250,7 +250,9 @@ div[id*="step"]{
     border-radius: 15px;
     display: inline-block;
 	max-height: 80%;
+
     max-width: 700px;
+	width: 700px;
     padding: 20px;
     position: relative;
 	text-align: right;
