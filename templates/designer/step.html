@@ -1,20 +1,22 @@
 {% extends 'designer/base.html' %}
 {% block content %}
-    <div id="view">
-        <div class="main-view">
-            {% block view %}
-                {% include 'designer/views/default.html' with images=images %}
+    <div class="content">
+        <div id="view">
+            <div class="main-view">
+                {% block view %}
+                    {% include 'designer/views/default.html' with images=images %}
+                {% endblock %}
+                <div class="nav nav-left"></div>
+                <div class="nav nav-right"></div>
+            </div>
+            {% block steps %}
+                {% include 'designer/others/steps.html' with steps=steps %}
             {% endblock %}
-            <div class="nav nav-left"></div>
-            <div class="nav nav-right"></div>
         </div>
-    </div>
-    <div class="options">
-    {% block steps %}
-        {% include 'designer/others/steps.html' with steps=steps %}
-    {% endblock %}
-    {% block options %}
-        {% include 'designer/options/default.html' with items=options checked_items=checked_items %}
-    {% endblock %}
+        <div class="options">
+        {% block options %}
+            {% include 'designer/options/default.html' with items=options checked_items=checked_items %}
+        {% endblock %}
+        </div>
     </div>
 {% endblock %}
