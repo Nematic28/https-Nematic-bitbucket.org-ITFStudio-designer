@@ -113,10 +113,10 @@ class DesignerForm:
             result.append(item)
 
             if item.type.is_label() or item.type.is_popup():
-                result += self.__load_options__(item.child())
+                result += self.__load_options__(item.child().published().ordered().all())
             else:
                 if self.__need_to_load__(item):
-                    child += item.child()
+                    child += item.child().published().ordered().all()
         result += self.__load_options__(child)
         return result
 
