@@ -13,6 +13,7 @@
         </a>
         <hr>
     </header>
+    {% include 'designer/views/breadcrumbs.html' with branch=branch %}
     {% block content %}
     Default content
     {% endblock %}

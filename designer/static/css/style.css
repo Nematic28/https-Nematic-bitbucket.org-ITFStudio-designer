@@ -379,3 +379,8 @@ a.type-of-product-content{
 
 /*	END "ВСПЛЫВАЮЩИЕ ОКНА"	*/
 
+.breadcrumbs {
+	margin: auto;
+	width: 1000px;
+
+}

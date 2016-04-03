@@ -35,8 +35,9 @@ $(function(){
         $("#popup_"+$(this).val()).toggle();
 
     });
-    $(document).on("click",'input[data-popup=close]',function() {
+    $(document).on("click",'[data-popup=close]',function() {
        $(this).parents(".popup-overlay").hide();
+        return false;
     });
 
     

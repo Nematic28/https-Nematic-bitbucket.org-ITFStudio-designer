@@ -44,18 +44,29 @@ class DesignerForm:
         elif item.type.is_step():
             self.template_name = 'designer/step.html'
             self.__load_steps__(item)
+        return item
 
     def load(self, element_id):
-        self.__load_root__(element_id)
+        item = self.__load_root__(element_id)
         child = Catalog.objects.child(element_id).published().ordered().all()
+        branch = Catalog.objects.branch(item.left,item.right).ordered().all();
+
 
         for item in child:
             if item.type.is_step():
                 return redirect('/designer/view/%s' % str(item.id))
 
         options = self.__load_options__(child)
+        images = self.__load_images__(options)
+        if not images:
+            for image in item.images():
+                if image.number in images:
+                    images[image.number].append(image)
+                else:
+                    images[image.number] = [image]
+        self.variables['branch'] = branch
         self.variables['options'] = options
-        self.variables['images'] = self.__load_images__(options)
+        self.variables['images'] = images
         items = self.get_checked_items_id()
         self.variables['checked_items'] = items
         self.variables['colors'] = self.__load_colors__(options)

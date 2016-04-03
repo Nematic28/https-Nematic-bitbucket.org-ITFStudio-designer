@@ -1,0 +1,9 @@
+<div class="breadcrumbs">
+{% for item in branch %}
+
+        <a href="{% url 'view' item.id %}">{{ item.name }}</a>
+
+
+
+{% endfor %}
+</div>

@@ -165,8 +165,12 @@ class Catalog(models.Model):
     def child(self):
         return Catalog.objects.child(self.id).ordered().all()
 
+    def parent(self):
+        return Catalog.objects.parent(self.id).ordered().all()
+
     def branch(self):
         return Catalog.objects.branch(self.left, self.right).all()
+
 
     def up(self):
         item_to_up = Catalog.objects.get(pk=self.pk)

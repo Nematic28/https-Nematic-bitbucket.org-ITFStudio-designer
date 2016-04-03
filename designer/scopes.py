@@ -29,6 +29,7 @@ class CatalogManager(models.Manager):
     def branch(self, left, right):
         return self.get_queryset().branch(left, right)
 
+
     def child(self, catalog_id):
         return self.get_queryset().child(catalog_id)
 
