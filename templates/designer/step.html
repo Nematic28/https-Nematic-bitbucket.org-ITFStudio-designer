@@ -1,5 +1,8 @@
 {% extends 'designer/base.html' %}
 {% block content %}
+    {% if razdel.icon %}
+        <img class="ico" src="{{ razdel.icon.url }}" />
+    {% endif %}
     <div class="content">
         <div id="view">
             <div class="main-view">

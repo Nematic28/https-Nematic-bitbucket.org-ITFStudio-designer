@@ -48,22 +48,30 @@ class DesignerForm:
 
     def load(self, element_id):
         item = self.__load_root__(element_id)
-        child = Catalog.objects.child(element_id).published().ordered().all()
-        branch = Catalog.objects.branch(item.left,item.right).ordered().all();
 
+        child = Catalog.objects.child(element_id).published().ordered().all()
+        branch = Catalog.objects.branch(item.left,item.right).ordered().all()
 
         for item in child:
             if item.type.is_step():
                 return redirect('/designer/view/%s' % str(item.id))
 
+
+
+        for item in branch:
+            if item.type.is_link():
+                razdel = item
+
+
         options = self.__load_options__(child)
         images = self.__load_images__(options)
-        if not images:
-            for image in item.images():
+        if not images and item:
+            for image in  item.images():
                 if image.number in images:
                     images[image.number].append(image)
                 else:
                     images[image.number] = [image]
+        self.variables['razdel'] = razdel
         self.variables['branch'] = branch
         self.variables['options'] = options
         self.variables['images'] = images
