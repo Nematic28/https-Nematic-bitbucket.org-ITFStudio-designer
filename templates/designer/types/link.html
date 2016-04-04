@@ -1,7 +1,7 @@
 <div class="type-of-product">
     <a href="{% url 'view' item.id %}" class="type-of-product-content">
-        {% if item.icon %}
-            <img src="{{ item.icon.url }}" >
+        {% if item.images %}
+            <img src="{{ item.images.0.file.url }}" >
         {% else %}
             <img src="/static/image/no-image-dummy.png" >
         {% endif %}
