@@ -66,10 +66,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'acar',
-	'USER': 'acar',
-	'PASSWORD': '',
-	'HOST': 'localhost',
-	'PORT': '3306',
+	    'USER': 'acar',
+	    'PASSWORD': '',
+	    'HOST': 'localhost',
+	    'PORT': '3306',
     }
 }
 
