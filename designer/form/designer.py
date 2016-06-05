@@ -58,6 +58,7 @@ class DesignerForm:
 
 
 
+        razdel = None
         for item in branch:
             if item.type.is_link():
                 razdel = item
@@ -71,7 +72,8 @@ class DesignerForm:
                     images[image.number].append(image)
                 else:
                     images[image.number] = [image]
-        self.variables['razdel'] = razdel
+        if razdel:
+            self.variables['razdel'] = razdel
         self.variables['branch'] = branch
         self.variables['options'] = options
         self.variables['images'] = images

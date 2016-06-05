@@ -54,8 +54,9 @@ class CatalogAdmin(admin.ModelAdmin):
     list_filter = ('date_create', 'date_modify')
     readonly_fields = ('date_create', 'date_modify')
     ordering = ('left',)
-
-    actions = ['delete_list', 'hide_list', 'show_list', 'up_list', 'down_list']
+    
+    actions = ['delete_list', 'hide_list', 'show_list', 'up_list', 'down_list','copy']
+    #actions = ['delete_list', 'hide_list', 'show_list', 'up_list', 'down_list','export']
     inlines = [CatalogImagesInline]
 
     save_as = True
@@ -115,9 +116,24 @@ class CatalogAdmin(admin.ModelAdmin):
         self.message_user(request, "%s записей было поднято" % len(queryset))
     down_list.short_description = 'Опустить'
 
+    def copy(self, request, queryset):
+        if (queryset.count() > 1):
+            self.message_user(request, "Выберите одну запись")
+        else:
+            for obj in queryset:
+                obj.copy()
+            self.message_user(request, "Запись скопирована")
+    copy.short_description = 'Копировать узел'
+
+    #def export(self, request, queryset):
+    #    for obj in queryset:
+    #        obj.export()
+    #    self.message_user(request, "Экспорт был произведен")
+    #export.short_description = 'Экспорт'
+
     def get_actions(self, request):
         actions = super(CatalogAdmin, self).get_actions(request)
-        del actions['delete_selected']
+        #del actions['delete_selected']
         return actions
 
     def delete_model(self, request, obj):

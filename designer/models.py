@@ -4,6 +4,7 @@ from designer.scopes import CatalogManager, ImageManager
 import catalog.settings
 import random
 import string
+#import xlrd
 
 
 class Helper():
@@ -220,6 +221,52 @@ class Catalog(models.Model):
             item.left -= shift_to_up
             item.right -= shift_to_up
             item.save()
+
+    def copy(self,root=None):
+
+        item_source = Catalog.objects.get(pk=self.pk)
+
+        if (root == None):
+            elem = Catalog(
+                name=item_source.name,
+                type = item_source.type,
+                root = item_source.root,
+                selector = item_source.selector,
+                color = item_source.color,
+                texture = item_source.color,
+                layer = item_source.layer,
+                default = item_source.default,
+                display = item_source.display
+                )
+        else:
+            elem = Catalog(
+                name=item_source.name,
+                type = item_source.type,
+                root = root,
+                selector = item_source.selector,
+                color = item_source.color,
+                texture = item_source.color,
+                layer = item_source.layer,
+                default = item_source.default,
+                display = item_source.display
+                )
+
+        elem.save()
+
+        for child in self.child():
+            child.copy(elem)
+            elem.refresh_from_db()
+
+
+
+
+
+    #def export(self):
+    #    source_filename =  catalog.settings.STATIC_ROOT+"/import_test.xls"
+    #    wb = xlrd.open_workbook(source_filename, on_demand=True)
+    #    self.name = 'Тест';
+    #    self.type_id = 1;
+    #    self.insert();
 
     def delete(self, using=None):
         for image in self.images():

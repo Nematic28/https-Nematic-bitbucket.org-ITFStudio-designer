@@ -4,4 +4,5 @@
 Django >= 1.8
 Pillow == 2.8.1
 Django-jquery>=1.9.1
+#xlrd
 #for MySQL: MySQL-python == 1.2.5 or PyMySQL>=0.6.6
