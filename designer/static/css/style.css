@@ -5,6 +5,15 @@
          url('../fonts/JeffScriptRegular.ttf') format('truetype'),
          url('../fonts/JeffScriptRegular.svg#JeffScriptRegular') format('svg');
 }
+@font-face {
+    font-family: 'MyriadProRegular';
+    src: url('../fonts/MyriadProRegular.eot');
+    src: url('../fonts/MyriadProRegular.eot') format('embedded-opentype'),
+         url('../fonts/MyriadProRegular.woff2') format('woff2'),
+         url('../fonts/MyriadProRegular.woff') format('woff'),
+         url('../fonts/MyriadProRegular.ttf') format('truetype'),
+         url('../fonts/MyriadProRegular.svg#MyriadProRegular') format('svg');
+}
 html,
 body {
 	height: 100%;
@@ -379,8 +388,25 @@ a.type-of-product-content{
 
 /*	END "ВСПЛЫВАЮЩИЕ ОКНА"	*/
 
-.breadcrumbs {
+.breadcrumbs
+{
 	margin: auto;
 	width: 1000px;
-
+	font-family: 'MyriadProRegular';
+}
+.breadcrumbs a
+{
+	font-family: 'MyriadProRegular';
+	color:black;
+	text-decoration: none;
+}
+.breadcrumbs a:after
+{
+	content: '>';
+	padding-left:5px;
+	padding-right:5px;
+}
+.breadcrumbs a:last-child:after
+{
+	content: '';
 }
