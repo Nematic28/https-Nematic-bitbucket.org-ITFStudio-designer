@@ -211,7 +211,7 @@ a.type-of-product-content{
 	display: none;
 }
 .options .option input[type="radio"] + label  > img{
-	clip: rect(auto, auto, 30px, auto); /*Обрезаем верхнюю часть*/
+	clip: rect(auto, auto, 60px, auto); /*Обрезаем верхнюю часть*/
 	position: absolute;
 	left: 0;
 	margin: 0 auto;
@@ -230,7 +230,7 @@ a.type-of-product-content{
 .options .option label{
 	display: block;
 	font-size: 11px;
-	padding-top: 30px; /* Место для половины высоты спрайта*/
+	padding-top: 60px; /* Место для половины высоты спрайта*/
 	word-wrap: break-word;
 }
 /*	END "ОПЦИИ КОНСТРУКТОРА"	*/
