@@ -410,3 +410,9 @@ a.type-of-product-content{
 {
 	content: '';
 }
+a.close
+{
+	color:black;
+	text-decoration: none;
+	font-weight:bold;
+}
