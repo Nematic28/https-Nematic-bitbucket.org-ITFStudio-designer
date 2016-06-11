@@ -104,6 +104,7 @@ class CatalogAdmin(admin.ModelAdmin):
         self.message_user(request, "%s записей было опубликовано" % len(queryset))
     show_list.short_description = 'Опубликовать выбранные'
 
+
     def up_list(self, request, queryset):
         for obj in queryset:
             obj.up()
@@ -133,7 +134,7 @@ class CatalogAdmin(admin.ModelAdmin):
 
     def get_actions(self, request):
         actions = super(CatalogAdmin, self).get_actions(request)
-        #del actions['delete_selected']
+        del actions['delete_selected']
         return actions
 
     def delete_model(self, request, obj):
