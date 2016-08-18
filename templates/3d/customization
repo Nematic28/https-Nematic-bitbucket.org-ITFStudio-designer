@@ -1,0 +1,578 @@
+{
+    "Scene folder": "assets/",
+    "Scene filename": "dailybook.babylon",
+    "Icon folder": "assets/images/",
+    "Texture folder": "assets/textures/",
+    "Stitch folder": "assets/stitches/",
+    "Defaults": {
+        "Texture 1": {
+            "Type": "Oscar F056"
+        },
+        "Texture 2": {
+            "Type": "Oscar F056"
+        },
+        "Texture 3": {
+            "Type": "Oscar F056"
+        },
+        "Corners": {
+            "Type": "Round"
+        },
+        "Spiral": {
+            "Type": "Without spiral"
+        },
+        "Stitch": {
+            "Type": "Without stitch"
+        },
+        "Threads": {
+            "Type": "Without threads"
+        },
+        "Clasp": {
+            "Type": "Without clasp"
+        },
+        "Button": {
+            "Type": "Without button"
+        },
+        "ElasticBand": {
+            "Type": "Without elastic band"
+        },
+        "Personalization": {
+            "Type": "Without personalization"
+        }
+    },
+    "Parameters": {
+        "Texture 1": {
+            "Disabled": "false",
+            "Text": "Текстура 1",
+            "Type": {
+                "Acero E937": {
+                    "Text": "Acero E937",
+                    "Texture filename": "Acero E937.jpg"
+                },
+                "Canyon Thermo Nero": {
+                    "Text": "Canyon Thermo Nero",
+                    "Texture filename": "Canyon Thermo Nero.jpg"
+                },
+                "Oscar 4716": {
+                    "Text": "Oscar 4716",
+                    "Texture filename": "Oscar 4716.jpg"
+                },
+                "Oscar bump": {
+                    "Text": "Oscar bump",
+                    "Texture filename": "Oscar bump.jpg"
+                },
+                "Oscar F056": {
+                    "Text": "Oscar F056",
+                    "Texture filename": "Oscar F056.jpg"
+                },
+                "Prestige 4716": {
+                    "Text": "Prestige 4716",
+                    "Texture filename": "Prestige 4716.jpg"
+                },
+                "Prestige 4882": {
+                    "Text": "Prestige 4882",
+                    "Texture filename": "Prestige 4882.jpg"
+                },
+                "Prestige bump": {
+                    "Text": "Prestige bump",
+                    "Texture filename": "Prestige bump.jpg"
+                },
+                "Prestige Nero": {
+                    "Text": "Prestige Nero",
+                    "Texture filename": "Prestige Nero.jpg"
+                },
+                "Silhouette 4720": {
+                    "Text": "Silhouette 4720",
+                    "Texture filename": "Silhouette 4720.jpg"
+                },
+                "Silhouette 4890": {
+                    "Text": "Silhouette 4890",
+                    "Texture filename": "Silhouette 4890.jpg"
+                },
+                "Silhouette bump": {
+                    "Text": "Silhouette bump",
+                    "Texture filename": "Silhouette bump.jpg"
+                },
+                "Silhouette E475": {
+                    "Text": "Silhouette E475",
+                    "Texture filename": "Silhouette E475.jpg"
+                },
+                "Silhouette E479": {
+                    "Text": "Silhouette E479",
+                    "Texture filename": "Silhouette E479.jpg"
+                },
+                "Silhouette Nero": {
+                    "Text": "Silhouette Nero",
+                    "Texture filename": "Silhouette Nero.jpg"
+                },
+                "Vivella 4747": {
+                    "Text": "Vivella 4747",
+                    "Texture filename": "Vivella 4747.jpg"
+                },
+                "Vivella 4890": {
+                    "Text": "Vivella 4890",
+                    "Texture filename": "Vivella 4890.jpg"
+                },
+                "Vivella bump": {
+                    "Text": "Vivella bump",
+                    "Texture filename": "Vivella bump.jpg"
+                },
+                "Vivella D519": {
+                    "Text": "Vivella D519",
+                    "Texture filename": "Vivella D519.jpg"
+                },
+                "Vivella E282": {
+                    "Text": "Vivella E282",
+                    "Texture filename": "Vivella E282.jpg"
+                },
+                "Vivella E475": {
+                    "Text": "Vivella E475",
+                    "Texture filename": "Vivella E475.jpg"
+                },
+                "Vivella E478": {
+                    "Text": "Vivella E478",
+                    "Texture filename": "Vivella E478.jpg"
+                },
+                "Vivella E479": {
+                    "Text": "Vivella E479",
+                    "Texture filename": "Vivella E479.jpg"
+                },
+                "Vivella F003": {
+                    "Text": "Vivella F003",
+                    "Texture filename": "Vivella F003.jpg"
+                },
+                "Vivella Nero": {
+                    "Text": "Vivella Nero",
+                    "Texture filename": "Vivella Nero.jpg"
+                }
+            }
+        },
+
+        "Texture 2": {
+            "Disabled": "false",
+            "Text": "Текстура 2",
+            "Type": {
+                "Acero E937": {
+                    "Text": "Acero E937",
+                    "Texture filename": "Acero E937.jpg"
+                },
+                "Canyon Thermo Nero": {
+                    "Text": "Canyon Thermo Nero",
+                    "Texture filename": "Canyon Thermo Nero.jpg"
+                },
+                "Oscar 4716": {
+                    "Text": "Oscar 4716",
+                    "Texture filename": "Oscar 4716.jpg"
+                },
+                "Oscar bump": {
+                    "Text": "Oscar bump",
+                    "Texture filename": "Oscar bump.jpg"
+                },
+                "Oscar F056": {
+                    "Text": "Oscar F056",
+                    "Texture filename": "Oscar F056.jpg"
+                },
+                "Prestige 4716": {
+                    "Text": "Prestige 4716",
+                    "Texture filename": "Prestige 4716.jpg"
+                },
+                "Prestige 4882": {
+                    "Text": "Prestige 4882",
+                    "Texture filename": "Prestige 4882.jpg"
+                },
+                "Prestige bump": {
+                    "Text": "Prestige bump",
+                    "Texture filename": "Prestige bump.jpg"
+                },
+                "Prestige Nero": {
+                    "Text": "Prestige Nero",
+                    "Texture filename": "Prestige Nero.jpg"
+                },
+                "Silhouette 4720": {
+                    "Text": "Silhouette 4720",
+                    "Texture filename": "Silhouette 4720.jpg"
+                },
+                "Silhouette 4890": {
+                    "Text": "Silhouette 4890",
+                    "Texture filename": "Silhouette 4890.jpg"
+                },
+                "Silhouette bump": {
+                    "Text": "Silhouette bump",
+                    "Texture filename": "Silhouette bump.jpg"
+                },
+                "Silhouette E475": {
+                    "Text": "Silhouette E475",
+                    "Texture filename": "Silhouette E475.jpg"
+                },
+                "Silhouette E479": {
+                    "Text": "Silhouette E479",
+                    "Texture filename": "Silhouette E479.jpg"
+                },
+                "Silhouette Nero": {
+                    "Text": "Silhouette Nero",
+                    "Texture filename": "Silhouette Nero.jpg"
+                },
+                "Vivella 4747": {
+                    "Text": "Vivella 4747",
+                    "Texture filename": "Vivella 4747.jpg"
+                },
+                "Vivella 4890": {
+                    "Text": "Vivella 4890",
+                    "Texture filename": "Vivella 4890.jpg"
+                },
+                "Vivella bump": {
+                    "Text": "Vivella bump",
+                    "Texture filename": "Vivella bump.jpg"
+                },
+                "Vivella D519": {
+                    "Text": "Vivella D519",
+                    "Texture filename": "Vivella D519.jpg"
+                },
+                "Vivella E282": {
+                    "Text": "Vivella E282",
+                    "Texture filename": "Vivella E282.jpg"
+                },
+                "Vivella E475": {
+                    "Text": "Vivella E475",
+                    "Texture filename": "Vivella E475.jpg"
+                },
+                "Vivella E478": {
+                    "Text": "Vivella E478",
+                    "Texture filename": "Vivella E478.jpg"
+                },
+                "Vivella E479": {
+                    "Text": "Vivella E479",
+                    "Texture filename": "Vivella E479.jpg"
+                },
+                "Vivella F003": {
+                    "Text": "Vivella F003",
+                    "Texture filename": "Vivella F003.jpg"
+                },
+                "Vivella Nero": {
+                    "Text": "Vivella Nero",
+                    "Texture filename": "Vivella Nero.jpg"
+                }
+            }
+        },
+        "Texture 3": {
+            "Disabled": "false",
+            "Text": "Текстура 3",
+            "Type": {
+                "Acero E937": {
+                    "Text": "Acero E937",
+                    "Texture filename": "Acero E937.jpg"
+                },
+                "Canyon Thermo Nero": {
+                    "Text": "Canyon Thermo Nero",
+                    "Texture filename": "Canyon Thermo Nero.jpg"
+                },
+                "Oscar 4716": {
+                    "Text": "Oscar 4716",
+                    "Texture filename": "Oscar 4716.jpg"
+                },
+                "Oscar bump": {
+                    "Text": "Oscar bump",
+                    "Texture filename": "Oscar bump.jpg"
+                },
+                "Oscar F056": {
+                    "Text": "Oscar F056",
+                    "Texture filename": "Oscar F056.jpg"
+                },
+                "Prestige 4716": {
+                    "Text": "Prestige 4716",
+                    "Texture filename": "Prestige 4716.jpg"
+                },
+                "Prestige 4882": {
+                    "Text": "Prestige 4882",
+                    "Texture filename": "Prestige 4882.jpg"
+                },
+                "Prestige bump": {
+                    "Text": "Prestige bump",
+                    "Texture filename": "Prestige bump.jpg"
+                },
+                "Prestige Nero": {
+                    "Text": "Prestige Nero",
+                    "Texture filename": "Prestige Nero.jpg"
+                },
+                "Silhouette 4720": {
+                    "Text": "Silhouette 4720",
+                    "Texture filename": "Silhouette 4720.jpg"
+                },
+                "Silhouette 4890": {
+                    "Text": "Silhouette 4890",
+                    "Texture filename": "Silhouette 4890.jpg"
+                },
+                "Silhouette bump": {
+                    "Text": "Silhouette bump",
+                    "Texture filename": "Silhouette bump.jpg"
+                },
+                "Silhouette E475": {
+                    "Text": "Silhouette E475",
+                    "Texture filename": "Silhouette E475.jpg"
+                },
+                "Silhouette E479": {
+                    "Text": "Silhouette E479",
+                    "Texture filename": "Silhouette E479.jpg"
+                },
+                "Silhouette Nero": {
+                    "Text": "Silhouette Nero",
+                    "Texture filename": "Silhouette Nero.jpg"
+                },
+                "Vivella 4747": {
+                    "Text": "Vivella 4747",
+                    "Texture filename": "Vivella 4747.jpg"
+                },
+                "Vivella 4890": {
+                    "Text": "Vivella 4890",
+                    "Texture filename": "Vivella 4890.jpg"
+                },
+                "Vivella bump": {
+                    "Text": "Vivella bump",
+                    "Texture filename": "Vivella bump.jpg"
+                },
+                "Vivella D519": {
+                    "Text": "Vivella D519",
+                    "Texture filename": "Vivella D519.jpg"
+                },
+                "Vivella E282": {
+                    "Text": "Vivella E282",
+                    "Texture filename": "Vivella E282.jpg"
+                },
+                "Vivella E475": {
+                    "Text": "Vivella E475",
+                    "Texture filename": "Vivella E475.jpg"
+                },
+                "Vivella E478": {
+                    "Text": "Vivella E478",
+                    "Texture filename": "Vivella E478.jpg"
+                },
+                "Vivella E479": {
+                    "Text": "Vivella E479",
+                    "Texture filename": "Vivella E479.jpg"
+                },
+                "Vivella F003": {
+                    "Text": "Vivella F003",
+                    "Texture filename": "Vivella F003.jpg"
+                },
+                "Vivella Nero": {
+                    "Text": "Vivella Nero",
+                    "Texture filename": "Vivella Nero.jpg"
+                }
+            }
+        },
+        "Corners": {
+            "Disabled": "false",
+            "Text": "Углы",
+            "Type": {
+                "Square": {
+                    "Text": "Прямые",
+                    "Object name": "SquareCornersCover"
+                },
+                "Round": {
+                    "Text": "Круглые",
+                    "Object name": "RoundCornersCover"
+                }
+            }
+        },
+        "Spiral": {
+            "Disabled": "true",
+            "Text": "Спираль",
+            "Type": {
+                "Without spiral": {
+                    "Text": "Без спирали",
+                    "Object name": "DefaultBinder"
+                },
+                "With semi spiral": {
+                    "Text": "С полуспиралью",
+                    "Object name": null
+                },
+                "With spiral": {
+                    "Text": "Со спиралью",
+                    "Object name": null
+                }
+            }
+        },
+        "Stitch": {
+            "Disabled": "false",
+            "Text": "Сшивка",
+            "Type": {
+                "Without stitch": {
+                    "Text": "Без сшивки",
+                    "Folder": "map0/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "1.png",
+                      "RoundCornersMaterial" : "1.png",
+                      "SquareCornersMaterial" : "1.png",
+                      "DefaultBinderMaterial" : "1.png"
+                    }
+                },
+                "Stitch №1": {
+                    "Text": "Сшивка №1",
+                    "Folder": "map1/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "3.png",
+                      "SquareCornersMaterial" : "3.png",
+                      "DefaultBinderMaterial" : "4.png"
+                    }
+                },
+                "Stitch №2": {
+                    "Text": "Сшивка №2",
+                    "Folder": "map2/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "3.png",
+                      "SquareCornersMaterial" : "3.png",
+                      "DefaultBinderMaterial" : "4.png"
+                    }
+                },
+                "Stitch №3": {
+                    "Text": "Сшивка №3",
+                    "Folder": "map3/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "3.png",
+                      "SquareCornersMaterial" : "3.png",
+                      "DefaultBinderMaterial" : "4.png"
+                    }
+                },
+                "Stitch №4": {
+                    "Text": "Сшивка №4",
+                    "Folder": "map4/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "3.png",
+                      "SquareCornersMaterial" : "3.png",
+                      "DefaultBinderMaterial" : "2.png"
+                    }
+                },
+                "Stitch №5": {
+                    "Text": "Сшивка №5",
+                    "Folder": "map5/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "1.png",
+                      "RoundCornersMaterial" : "2.png",
+                      "SquareCornersMaterial" : "2.png",
+                      "DefaultBinderMaterial" : "3.png"
+                    }
+                },
+                "Stitch №6": {
+                    "Text": "Сшивка №6",
+                    "Folder": "map6/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "3.png",
+                      "SquareCornersMaterial" : "3.png",
+                      "DefaultBinderMaterial" : "2.png"
+                    }
+                },
+                "Stitch №7": {
+                    "Text": "Сшивка №7",
+                    "Folder": "map7/",
+                    "File by material": {
+                      "RightMainMaterial" : "1.png",
+                      "LeftMainMaterial" : "2.png",
+                      "RoundCornersMaterial" : "2.png",
+                      "SquareCornersMaterial" : "2.png",
+                      "DefaultBinderMaterial" : "2.png"
+                    }
+                }
+            }
+        },
+        "Threads": {
+            "Disabled": "false",
+            "Text": "Прошивка",
+            "Type": {
+                "Without threads": {
+                    "Text": "Без прошивки"
+                },
+                "With threads": {
+                    "Text": "С прошивкой",
+                    "Object name": "Thread"
+                }
+            }
+        },
+        "Clasp": {
+            "Disabled": "true",
+            "Text": "Застёжка",
+            "Type": {
+                "Without clasp": {
+                    "Text": "Без застёжки"
+                },
+                "Clasp 1": {
+                    "Text": "Хлястик №1",
+                    "Object name": null
+                },
+                "Clasp 2": {
+                    "Text": "Хлястик №2",
+                    "Object name": null
+                },
+                "Clasp 3": {
+                    "Text": "Хлястик №3",
+                    "Object name": null
+                },
+                "Clasp 4": {
+                    "Text": "Хлястик №4",
+                    "Object name": null
+                },
+                "Clasp 5": {
+                    "Text": "Хлястик №5",
+                    "Object name": null
+                }
+            }
+        },
+        "Button": {
+            "Disabled": "true",
+            "Text": "Кнопка",
+            "Type": {
+                "Without button": {
+                    "Text": "Без кнопки"
+                },
+                "With button": {
+                    "Text": "С кнопкой",
+                    "Object name": null
+                }
+            }
+        },
+        "ElasticBand": {
+            "Disabled": "false",
+            "Text": "Резинка",
+            "Type": {
+                "Without elastic band": {
+                    "Text": "Без резинки"
+                },
+                "Vertical elastic band 6mm": {
+                    "Text": "С вертикальной резинкой 6 мм",
+                    "Object name": "Band6mm"
+                },
+                "Vertical elastic band 10mm": {
+                    "Text": "С вертикальной резинкой 10 мм",
+                    "Object name": "Band10mm"
+                }
+            }
+        },
+        "Personalization": {
+            "Disabled": "true",
+            "Text": "Персонализация",
+            "Type": {
+                "Without personalization": {
+                    "Text": "Без персонализации"
+                },
+                "Foil": {
+                    "Text": "Фольга",
+                    "Object name": null
+                },
+                "Silkscreen": {
+                    "Text": "Шелкография",
+                    "Object name": null
+                }
+            }
+        }
+    }
+}
