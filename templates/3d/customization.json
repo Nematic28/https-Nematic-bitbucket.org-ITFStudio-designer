@@ -398,89 +398,89 @@
                 "Without stitch": {
                     "Text": "Без сшивки",
                     "Folder": "map0/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "1.png",
-                      "RoundCornersMaterial" : "1.png",
-                      "SquareCornersMaterial" : "1.png",
-                      "DefaultBinderMaterial" : "1.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "1.png",
+                      "RoundCornersCover" : "1.png",
+                      "SquareCornersCover" : "1.png",
+                      "DefaultBinder" : "1.png"
                     }
                 },
                 "Stitch №1": {
                     "Text": "Сшивка №1",
                     "Folder": "map1/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "3.png",
-                      "SquareCornersMaterial" : "3.png",
-                      "DefaultBinderMaterial" : "4.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "3.png",
+                      "SquareCornersCover" : "3.png",
+                      "DefaultBinder" : "4.png"
                     }
                 },
                 "Stitch №2": {
                     "Text": "Сшивка №2",
                     "Folder": "map2/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "3.png",
-                      "SquareCornersMaterial" : "3.png",
-                      "DefaultBinderMaterial" : "4.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "3.png",
+                      "SquareCornersCover" : "3.png",
+                      "DefaultBinder" : "4.png"
                     }
                 },
                 "Stitch №3": {
                     "Text": "Сшивка №3",
                     "Folder": "map3/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "3.png",
-                      "SquareCornersMaterial" : "3.png",
-                      "DefaultBinderMaterial" : "4.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "3.png",
+                      "SquareCornersCover" : "3.png",
+                      "DefaultBinder" : "4.png"
                     }
                 },
                 "Stitch №4": {
                     "Text": "Сшивка №4",
                     "Folder": "map4/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "3.png",
-                      "SquareCornersMaterial" : "3.png",
-                      "DefaultBinderMaterial" : "2.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "3.png",
+                      "SquareCornersCover" : "3.png",
+                      "DefaultBinder" : "2.png"
                     }
                 },
                 "Stitch №5": {
                     "Text": "Сшивка №5",
                     "Folder": "map5/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "1.png",
-                      "RoundCornersMaterial" : "2.png",
-                      "SquareCornersMaterial" : "2.png",
-                      "DefaultBinderMaterial" : "3.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "1.png",
+                      "RoundCornersCover" : "2.png",
+                      "SquareCornersCover" : "2.png",
+                      "DefaultBinder" : "3.png"
                     }
                 },
                 "Stitch №6": {
                     "Text": "Сшивка №6",
                     "Folder": "map6/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "3.png",
-                      "SquareCornersMaterial" : "3.png",
-                      "DefaultBinderMaterial" : "2.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "3.png",
+                      "SquareCornersCover" : "3.png",
+                      "DefaultBinder" : "2.png"
                     }
                 },
                 "Stitch №7": {
                     "Text": "Сшивка №7",
                     "Folder": "map7/",
-                    "File by material": {
-                      "RightMainMaterial" : "1.png",
-                      "LeftMainMaterial" : "2.png",
-                      "RoundCornersMaterial" : "2.png",
-                      "SquareCornersMaterial" : "2.png",
-                      "DefaultBinderMaterial" : "2.png"
+                    "File by object": {
+                      "RightMainCover" : "1.png",
+                      "LeftMainCover" : "2.png",
+                      "RoundCornersCover" : "2.png",
+                      "SquareCornersCover" : "2.png",
+                      "DefaultBinder" : "2.png"
                     }
                 }
             }

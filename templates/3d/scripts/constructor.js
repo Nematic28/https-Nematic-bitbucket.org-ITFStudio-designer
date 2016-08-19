@@ -3,12 +3,16 @@
 var Constructor = function () {
     var publicMethods = {};
 
-    var config;
-    var canvas;
-    var engine;
+    var config; // объект, отражающий содержимое конфигурационного файла customization.json
+    var canvas; // элемент html-документа, отображающий сцену.
+    var engine; // ядро трехмерной обработки BABYLON
     var scene;
     var camera;
 
+    /** Сокрытие старого объекта, соотвествующего предыдущему активному варианту конфигурации
+    параметра, а также отображение объекта, соотвествующего новому варианту(например, сокрытие
+    круглых углов ежедневника и отображение квадратных).
+    */
     function changeMesh(parameter, oldParameterType, newParameterType) {
         if (oldParameterType != null) {
             var oldObjectName = config["Parameters"][parameter]["Type"][oldParameterType]["Object name"];
@@ -25,47 +29,56 @@ var Constructor = function () {
         }
     }
 
+    /** Словарь параметров конфигурации и соотвествующие функции, изменяющие их.*/
     var meshModificators = {
+        /** Создание новой текстуры и размещение её в качестве первой на каждом объекте, покрытом
+            мульти-текстурным материалом(TerrainMaterial) путем изменения его свойства diffuseTexture1.
+            Позиция, на которой будет находится текстура, определяется картой смешивания
+            текстур для каждого объекта(карты изменяются при изменении сшивки).
+            Первая текстура будет там, где на карте красный цвет.
+        */
         "Texture 1": function Texture1(_, textureType) {
             var texturePath = config["Texture folder"] + config["Parameters"]["Texture 1"]["Type"][textureType]["Texture filename"];
             var texture = new BABYLON.Texture(texturePath, scene);
 
-            var materialNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by material"];
+            var objectsNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by object"];
 
-            for (var materialName in materialNames) {
-                var material = scene.getMaterialByID(materialName);
-                if (material.diffuseTexture1) {
-                    material.diffuseTexture1.dispose();
+            for (var objectName in objectsNames) {
+                var mesh = scene.getMeshByName(objectName);
+                if (mesh.material.diffuseTexture1) {
+                    mesh.material.diffuseTexture1.dispose();
                 }
-                material.diffuseTexture1 = texture;
+                mesh.material.diffuseTexture1 = texture;
             }
         },
+        // Вторая текстура - на месте зеленого цвета.
         "Texture 2": function Texture2(_, textureType) {
             var texturePath = config["Texture folder"] + config["Parameters"]["Texture 2"]["Type"][textureType]["Texture filename"];
             var texture = new BABYLON.Texture(texturePath, scene);
 
-            var materialNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by material"];
+            var objectsNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by object"];
 
-            for (var materialName in materialNames) {
-                var material = scene.getMaterialByID(materialName);
-                if (material.diffuseTexture2) {
-                    material.diffuseTexture2.dispose();
+            for (var objectName in objectsNames) {
+                var mesh = scene.getMeshByName(objectName);
+                if (mesh.material.diffuseTexture2) {
+                    mesh.material.diffuseTexture2.dispose();
                 }
-                material.diffuseTexture2 = texture;
+                mesh.material.diffuseTexture2 = texture;
             }
         },
+        // Третья - на месте синего цвета.
         "Texture 3": function Texture3(_, textureType) {
             var texturePath = config["Texture folder"] + config["Parameters"]["Texture 3"]["Type"][textureType]["Texture filename"];
             var texture = new BABYLON.Texture(texturePath, scene);
 
-            var materialNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by material"];
+            var objectsNames = config["Parameters"]["Stitch"]["Type"]["Without stitch"]["File by object"];
 
-            for (var materialName in materialNames) {
-                var material = scene.getMaterialByID(materialName);
-                if (material.diffuseTexture3) {
-                    material.diffuseTexture3.dispose();
+            for (var objectName in objectsNames) {
+                var mesh = scene.getMeshByName(objectName);
+                if (mesh.material.diffuseTexture3) {
+                    mesh.material.diffuseTexture3.dispose();
                 }
-                material.diffuseTexture3 = texture;
+                mesh.material.diffuseTexture3 = texture;
             }
         },
         "Corners": function Corners(oldCornerType, cornerType) {
@@ -74,25 +87,35 @@ var Constructor = function () {
         "Spiral": function Spiral(oldSpiralType, spiralType) {
             changeMesh("Spiral", oldSpiralType, spiralType);
         },
+
+        /** На каждом объекте, покрытом мульти-текстурным
+        * материалом, изменяется карта смешивания текстур. Вариант
+        * сшивки представляет из себя отдельную папку с изображениями, т.е.
+        * картами смешивания для каждого объета. Соответствие файла изображения
+        * карты и объекта представлено в конфиге.
+        */
         "Stitch": function Stitch(_, stitchType) {
             var mapFolder = config["Stitch folder"] + config["Parameters"]["Stitch"]["Type"][stitchType]["Folder"];
-            var filesByMaterials = config["Parameters"]["Stitch"]["Type"][stitchType]["File by material"];
+            var objectNames = config["Parameters"]["Stitch"]["Type"][stitchType]["File by object"];
 
-            for (var materialName in filesByMaterials) {
-                var file = config["Parameters"]["Stitch"]["Type"][stitchType]["File by material"][materialName];
-                var map = new BABYLON.Texture(mapFolder + file, scene);
-                var material = scene.getMaterialByID(materialName);
+            for (var objectName in objectNames) {
+                var fileName = config["Parameters"]["Stitch"]["Type"][stitchType]["File by object"][objectName];
+                var map = new BABYLON.Texture(mapFolder + fileName, scene);
 
-                if (material.mixTexture) {
-                    material.mixTexture.dispose();
+                var mesh = scene.getMeshByName(objectName);
+                if (mesh.material.mixTexture) {
+                    mesh.material.mixTexture.dispose();
                 }
 
-                material.mixTexture = map;
+                mesh.material.mixTexture = map;
             }
         },
+
+        /* Прошивка обычно представлена множеством сфер, а не одним объектом(в результате работы экспортера
+        * из blender в babylon). В соотвествии с форматом именования(Threads1, Threads2, ....),
+        * после фильтрации происходит получение нужных объетов и включение/выключение их видимости.
+        */
         "Threads": function Threads(oldThreadsType, threadsType) {
-            // Прошивка обычно представлена множеством сфер, а не одним объектом,
-            // поэтому для неё отдельный случай
             if (oldThreadsType !== null) {
                 var oldThreadsName = config["Parameters"]["Threads"]["Type"][oldThreadsType]["Object name"];
                 var oldThreadMeshes = scene.meshes.filter(function (elem) {
@@ -125,6 +148,14 @@ var Constructor = function () {
         }
     };
 
+    /* Создание: 1) камеры которая будет вращаться вокруг ежедневника, указание её местоположения,
+    * 2) света для всей сцены,
+    * 3) мульти-текстурного материала для каждого из объектов, которые будут изменять свой внешний вид
+    * в процессе изменения текстур и сшивок.
+    * 4) Материала черного цвета для резинки.
+    * Получение значений параметров, которые должны быть установлены по умолчанию и вызов
+    * методов для изменения внешнего вида ежедневника в соответствии с этими значениями.
+    */
     function loadDefaults() {
         camera = camera = new BABYLON.ArcRotateCamera("Camera", 10, 1.2, 50, BABYLON.Vector3.Zero(), scene);
         scene.activeCamera = camera;
@@ -190,10 +221,12 @@ var Constructor = function () {
     publicMethods.run = function () {
         BABYLON.SceneLoader.Load(config["Scene folder"], config["Scene filename"], engine, function (newScene) {
             scene = newScene;
+            // Метод, который реагирует на событие окончания загрузки сцены
             scene.executeWhenReady(function () {
                 loadDefaults();
+                // Добавление камеры на холст.
                 scene.activeCamera.attachControl(canvas, false);
-
+                // Запуск цикла визуализации сцены.
                 engine.runRenderLoop(function () {
                     scene.render();
                 });
